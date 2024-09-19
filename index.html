@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name | PhD Student</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -22,13 +23,13 @@
     </header>
 
     <main>
-        <section id="about">
+        <section id="about" class="card">
             <h2>About Me</h2>
             <p>A brief biography about yourself.</p>
-            <a href="CV.pdf" download>Download CV</a>
+            <a class="button" href="CV.pdf" download>Download CV</a>
         </section>
 
-        <section id="research">
+        <section id="research" class="card">
             <h2>Research</h2>
             <h3>Research Interests</h3>
             <p>Your research interests.</p>
@@ -38,7 +39,7 @@
             <p>Your thoughts on future research directions.</p>
         </section>
 
-        <section id="publications">
+        <section id="publications" class="card">
             <h2>Publications</h2>
             <ul>
                 <li><a href="publication-link">Title of Paper 1</a></li>
@@ -46,7 +47,7 @@
             </ul>
         </section>
 
-        <section id="teaching">
+        <section id="teaching" class="card">
             <h2>Teaching</h2>
             <h3>Courses Taught</h3>
             <p>Details of courses.</p>
@@ -54,12 +55,12 @@
             <p>Your teaching philosophy.</p>
         </section>
 
-        <section id="blog">
+        <section id="blog" class="card">
             <h2>Blog</h2>
             <p>Latest updates about your research and experiences.</p>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="card">
             <h2>Contact</h2>
             <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
             <p>LinkedIn: <a href="your-linkedin-link">Your LinkedIn</a></p>
@@ -73,6 +74,11 @@
 
     <footer>
         <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <div class="socials">
+            <a href="https://linkedin.com/in/your-linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/your-twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://github.com/your-github" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
     </footer>
 </body>
 </html>
