@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shi Feng - Mathematics PhD Student</title>
+    <title>Shi Feng | Mathematics PhD Student</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Source+Sans+3:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Manrope:wght@300;400;600&display=swap');
 
         :root {
-            --ink: #1f2937;
-            --muted: #5b6472;
-            --accent: #3b82f6;
-            --accent-soft: rgba(59, 130, 246, 0.15);
+            --ink: #0f172a;
+            --muted: #475569;
+            --accent: #2563eb;
+            --accent-dark: #1e3a8a;
             --card: #ffffff;
-            --bg: #f5f7fb;
-            --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+            --bg: #f1f5f9;
+            --gold: #d4a373;
+            --shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
         }
 
         * {
@@ -24,236 +25,215 @@
         }
 
         body {
-            font-family: 'Source Sans 3', sans-serif;
-            line-height: 1.7;
+            font-family: 'Manrope', sans-serif;
             color: var(--ink);
-            background: radial-gradient(circle at top, #e8f0ff 0%, var(--bg) 55%, #eef2f7 100%);
+            background: radial-gradient(circle at top, #e2e8f0 0%, var(--bg) 55%, #e5e7eb 100%);
+            line-height: 1.7;
             min-height: 100vh;
         }
 
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-dark);
+        }
+
         .container {
-            max-width: 1000px;
+            width: min(1050px, 92vw);
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         header {
-            background: linear-gradient(135deg, #111827 0%, #1f2937 60%, #0f172a 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #111827 100%);
             color: white;
-            padding: 60px 0 50px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
+            padding: 64px 0 48px;
             position: relative;
             overflow: hidden;
         }
 
-        header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        header::after {
+            content: "";
+            position: absolute;
+            top: -80px;
+            right: -160px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(212, 163, 115, 0.4) 0%, rgba(212, 163, 115, 0) 70%);
+            filter: blur(2px);
         }
 
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
+        .hero {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            letter-spacing: 0.4px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .hero-meta {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-weight: 600;
+            color: #cbd5f5;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+        }
+
+        .portrait {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 6px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.4);
+            background: #e2e8f0;
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         nav {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 16px 0;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        nav li {
-            margin: 0 18px;
+            gap: 24px;
+            align-items: center;
+            padding: 16px 0;
         }
 
         nav a {
-            text-decoration: none;
-            color: var(--muted);
             font-weight: 600;
-            font-size: 1em;
-            padding: 8px 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
+            color: var(--muted);
         }
 
-        nav a:hover, nav a.active {
+        nav a.active,
+        nav a:hover {
             color: var(--accent);
-            border-bottom-color: var(--accent);
         }
 
         main {
-            padding: 50px 0 70px;
+            padding: 48px 0 72px;
         }
 
         section {
-            margin-bottom: 60px;
             background: var(--card);
-            padding: 40px;
-            border-radius: 18px;
+            padding: 36px;
+            border-radius: 20px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(148, 163, 184, 0.15);
-            animation: rise 0.6s ease both;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            margin-bottom: 40px;
+            animation: fadeIn 0.7s ease both;
         }
 
         h2 {
-            font-family: 'Playfair Display', serif;
-            color: var(--ink);
-            font-size: 2.1em;
-            margin-bottom: 25px;
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 12px;
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
         }
 
-        h3 {
-            color: var(--ink);
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            margin-top: 25px;
+        h2::after {
+            content: "";
+            display: block;
+            width: 56px;
+            height: 4px;
+            background: var(--gold);
+            margin-top: 12px;
+            border-radius: 999px;
         }
 
-        .profile-section {
+        .about-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            align-items: start;
+            grid-template-columns: 1fr;
+            gap: 18px;
         }
 
-        .profile-image {
-            text-align: center;
-        }
-
-        .profile-image img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid rgba(255, 255, 255, 0.85);
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
-        }
-
-        .profile-placeholder {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #60a5fa, #3b82f6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3em;
-            font-weight: bold;
-            margin: 0 auto;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
-        }
-
-        .about-highlight {
+        .email-pill {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: var(--accent-soft);
-            color: var(--ink);
-            padding: 8px 14px;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--accent-dark);
+            padding: 8px 16px;
             border-radius: 999px;
             font-weight: 600;
-            margin: 18px 0;
         }
 
         .publication {
-            margin-bottom: 25px;
             padding: 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
             background: #f8fafc;
-            border-radius: 12px;
-            border-left: 4px solid #10b981;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .publication-title {
-            font-weight: bold;
-            color: var(--ink);
-            margin-bottom: 8px;
-            font-size: 1.1em;
-        }
-
-        .publication-authors {
-            color: var(--muted);
-            margin-bottom: 5px;
-        }
-
-        .publication-venue {
-            color: var(--ink);
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-
-        .publication-links a {
-            color: var(--accent);
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: 500;
-        }
-
-        .publication-links a:hover {
-            text-decoration: underline;
+            margin-bottom: 18px;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .publication:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 16px 30px rgba(15, 23, 42, 0.12);
         }
 
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+        .publication-title {
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        .contact-item {
+        .publication-authors,
+        .publication-venue {
+            color: var(--muted);
+        }
+
+        .publication-links {
+            margin-top: 8px;
             display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .contact-item strong {
-            min-width: 100px;
-            color: var(--ink);
-        }
-
-        .contact-item a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-weight: 600;
         }
 
         footer {
-            background: #0f172a;
-            color: white;
             text-align: center;
-            padding: 30px 0;
-            margin-top: 60px;
+            padding: 28px 0 36px;
+            color: #94a3b8;
         }
 
-        @keyframes rise {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(16px);
             }
             to {
                 opacity: 1;
@@ -261,40 +241,37 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .profile-section {
+        @media (max-width: 800px) {
+            .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
+            .portrait {
+                margin: 0 auto;
+            }
+
             nav ul {
                 flex-direction: column;
-                align-items: center;
-            }
-
-            nav li {
-                margin: 5px 0;
-            }
-
-            header h1 {
-                font-size: 2.2em;
+                gap: 10px;
             }
 
             section {
                 padding: 28px;
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Shi Feng</h1>
-            <p>Mathematics PhD Student at Cornell University</p>
+        <div class="container hero">
+            <div class="portrait">
+                <img src="profile_image.jpeg" alt="Shi Feng">
+            </div>
+            <div>
+                <h1>Shi Feng</h1>
+                <p>Mathematics PhD Student at Cornell University</p>
+            </div>
         </div>
     </header>
 
@@ -303,28 +280,17 @@
             <ul>
                 <li><a href="#about" class="active">About</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <!--
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#contact">Contact</a></li>
-                -->
             </ul>
         </div>
     </nav>
 
     <main class="container">
         <section id="about">
-            <h2>About Me</h2>
-            <div class="profile-section">
-                <div class="profile-image">
-                    <!-- Replace with your actual photo -->
-                    <img src="profile_image.jpeg" alt="Shi Feng">
-                </div>
-                <div>
-                    <p>Welcome! I am a PhD student in Mathematics at Cornell University, working under the supervision of Philippe Sosoe. My research focuses on probability theory and related topics.</p>
-                    
-                    <p>Prior to starting my PhD, I completed my Bachelor's degree in Mathematics at University of Washington in 2023.</p>
-                    <div class="about-highlight">Email: sf599 (at) cornell.edu</div>
-                </div>
+            <h2>About</h2>
+            <div class="about-grid">
+                <p>Welcome! I am a PhD student in Mathematics at Cornell University, working under the supervision of Philippe Sosoe. My research focuses on probability theory and related topics.</p>
+                <p>Prior to starting my PhD, I completed my Bachelor's degree in Mathematics at University of Washington in 2023.</p>
+                <div class="email-pill">Email: sf599 (at) cornell.edu</div>
             </div>
         </section>
 
@@ -332,25 +298,25 @@
             <h2>Publications and Preprints</h2>
 
             <div class="publication">
-                <div class="publication-title">Variance bounds in product measures without exponential tails </div>
+                <div class="publication-title">Variance bounds in product measures without exponential tails</div>
                 <div class="publication-authors">Shi Feng</div>
                 <div class="publication-links">
                     <a href="https://arxiv.org/abs/2601.15450" target="_blank">arXiv</a>
                 </div>
             </div>
-            
+
             <div class="publication">
-                <div class="publication-title">Optimal Matching Problem on the Boolean Cube </div>
+                <div class="publication-title">Optimal Matching Problem on the Boolean Cube</div>
                 <div class="publication-authors">Shi Feng</div>
-                <div class="publication-venue"> Bernoulli, 2026</div>
+                <div class="publication-venue">Bernoulli, 2026</div>
                 <div class="publication-links">
-                    <a href="https://projecteuclid.org/journals/bernoulli/volume-32/issue-2/Optimal-matching-problem-on-the-Boolean-cube/10.3150/25-BEJ1919.full" target="_blank"> Journal</a>
+                    <a href="https://projecteuclid.org/journals/bernoulli/volume-32/issue-2/Optimal-matching-problem-on-the-Boolean-cube/10.3150/25-BEJ1919.full" target="_blank">Journal</a>
                     <a href="https://arxiv.org/pdf/2503.16713" target="_blank">arXiv</a>
                 </div>
             </div>
 
             <div class="publication">
-                <div class="publication-title">Mixing on the cycle with constant size perturbation </div>
+                <div class="publication-title">Mixing on the cycle with constant size perturbation</div>
                 <div class="publication-authors">Shi Feng, Balazs Gerencser</div>
                 <div class="publication-links">
                     <a href="https://arxiv.org/pdf/2411.07125" target="_blank">arXiv</a>
@@ -358,11 +324,11 @@
             </div>
 
             <div class="publication">
-                <div class="publication-title"> Markov Chains and Mappings of Distributions on Compact Spaces</div>
+                <div class="publication-title">Markov Chains and Mappings of Distributions on Compact Spaces</div>
                 <div class="publication-authors">David Aldous, Shi Feng</div>
-                <div class="publication-venue"> Latin American Journal of Probability and Mathematical Statistics, 2024</div>
+                <div class="publication-venue">Latin American Journal of Probability and Mathematical Statistics, 2024</div>
                 <div class="publication-links">
-                    <a href="https://alea.impa.br/articles/v21/21-53.pdf" target="_blank"> Journal</a>
+                    <a href="https://alea.impa.br/articles/v21/21-53.pdf" target="_blank">Journal</a>
                     <a href="https://arxiv.org/pdf/2404.01348" target="_blank">arXiv</a>
                 </div>
             </div>
@@ -395,73 +361,6 @@
                 </div>
             </div>
         </section>
-
-<!--
-        <section id="teaching">
-            <h2>Teaching Experience</h2>
-            
-            <h3>Teaching Assistant</h3>
-            <ul>
-                <li><strong>Course Name</strong> - Semester Year<br>
-                    <em>Instructor: Professor Name</em><br>
-                    Brief description of your role and responsibilities.</li>
-                <li><strong>Another Course</strong> - Semester Year<br>
-                    <em>Instructor: Professor Name</em><br>
-                    Description of duties, number of students, etc.</li>
-            </ul>
-
-            <h3>Tutoring & Mentoring</h3>
-            <ul>
-                <li>Private tutoring in [subjects] for undergraduate students</li>
-                <li>Mentored [number] undergraduate researchers in [area]</li>
-                <li>Volunteer teaching at [organization or program]</li>
-            </ul>
-        </section>
--->
-<!---
-        <section id="contact">
-            <h2>Contact Information</h2>
-            <div class="contact-info">
-                <div>
-                    <div class="contact-item">
-                        <strong>Email:</strong>
-                        <a href="mailto:sf###@cornell.edu">sf###@cornell.edu</a>
-                    </div>
-                    <div class="contact-item">
-                        <strong>Office:</strong>
-                        Room Number, Malott Hall
-                    </div>
-                    <div class="contact-item">
-                        <strong>Phone:</strong>
-                        (XXX) XXX-XXXX
-                    </div>
-                </div>
-                <div>
-                    <div class="contact-item">
-                        <strong>Address:</strong>
-                        Department of Mathematics<br>
-                        Cornell University<br>
-                        310 Malott Hall<br>
-                        Ithaca, NY 14853
-                    </div>
-                </div>
-            </div>
-
-            <h3>Online Profiles</h3>
-            <div class="contact-item">
-                <strong>ORCID:</strong>
-                <a href="https://orcid.org/your-orcid" target="_blank">https://orcid.org/your-orcid</a>
-            </div>
-            <div class="contact-item">
-                <strong>Google Scholar:</strong>
-                <a href="https://scholar.google.com/your-profile" target="_blank">View Profile</a>
-            </div>
-            <div class="contact-item">
-                <strong>arXiv:</strong>
-                <a href="https://arxiv.org/a/feng_s.html" target="_blank">Author Page</a>
-            </div>
-        </section>
--->
     </main>
 
     <footer>
@@ -471,7 +370,6 @@
     </footer>
 
     <script>
-        // Simple smooth scrolling for navigation
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -482,23 +380,21 @@
                         block: 'start'
                     });
                 }
-                
-                // Update active nav item
+
                 document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
-        // Update active nav item on scroll
         window.addEventListener('scroll', () => {
             let current = '';
             document.querySelectorAll('section').forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 120;
                 if (scrollY >= sectionTop) {
                     current = section.getAttribute('id');
                 }
             });
-            
+
             document.querySelectorAll('nav a').forEach(a => {
                 a.classList.remove('active');
                 if (a.getAttribute('href').slice(1) === current) {
