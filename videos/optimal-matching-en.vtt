@@ -2,1513 +2,908 @@ WEBVTT
 
 1
 00:00:01.870 --> 00:00:06.170 line:94%,end position:50%,center size:90% align:center
-Hi, I&#x27;m Shi Feng, a PhD student at Cornell
-University.
+Hi, I'm Shi Feng, a PhD student at Cornell University.
 
 2
 00:00:07.050 --> 00:00:10.450 line:94%,end position:50%,center size:90% align:center
-In this video, we will talk about the optimal
-matching problem.
+In this video, we will talk about the optimal matching problem.
 
 3
-00:00:13.530 --> 00:00:17.670 line:94%,end position:50%,center size:90% align:center
-In particular, I want to share the main result
-and ideas from these
+00:00:13.530 --> 00:00:18.558 line:94%,end position:50%,center size:90% align:center
+In particular, I want to share the main result and ideas from these two papers,
 
 4
-00:00:17.670 --> 00:00:22.630 line:94%,end position:50%,center size:90% align:center
-two papers, both studying how the optimal
-matching cost fluctuates
+00:00:18.558 --> 00:00:24.390 line:94%,end position:50%,center size:90% align:center
+both studying how the optimal matching cost fluctuates when the points are random.
 
 5
-00:00:22.630 --> 00:00:24.390 line:94%,end position:50%,center size:90% align:center
-when the points are random.
+00:00:25.250 --> 00:00:28.370 line:94%,end position:50%,center size:90% align:center
+They address different dimensions using very different methods.
 
 6
-00:00:25.250 --> 00:00:28.370 line:94%,end position:50%,center size:90% align:center
-They address different dimensions using very
-different methods.
+00:00:29.090 --> 00:00:34.430 line:94%,end position:50%,center size:90% align:center
+The first, written with Gilles Mordant, treats dimensions two, three and 4.
 
 7
-00:00:29.090 --> 00:00:34.430 line:94%,end position:50%,center size:90% align:center
-The first, written with Gilles Mordant, treats
-dimensions two, three and 4.
-
-8
 00:00:34.950 --> 00:00:37.710 line:94%,end position:50%,center size:90% align:center
 The second treats dimensions 5 and higher.
 
-9
+8
 00:00:40.140 --> 00:00:42.920 line:94%,end position:50%,center size:90% align:center
-Here is the setup of the optimal matching
-problem.
+Here is the setup of the optimal matching problem.
 
-10
+9
 00:00:43.640 --> 00:00:45.880 line:94%,end position:50%,center size:90% align:center
 Imagine a company with several factories.
 
-11
+10
 00:00:46.940 --> 00:00:49.720 line:94%,end position:50%,center size:90% align:center
-Their locations are chosen randomly in this
-square.
+Their locations are chosen randomly in this square.
+
+11
+00:00:50.320 --> 00:00:54.540 line:94%,end position:50%,center size:90% align:center
+Workers live throughout the square, spread evenly across it.
 
 12
-00:00:50.320 --> 00:00:54.540 line:94%,end position:50%,center size:90% align:center
-Workers live throughout the square, spread
-evenly across it.
+00:00:55.280 --> 00:01:00.311 line:94%,end position:50%,center size:90% align:center
+We treat them as a continuous population. The question is simple.
 
 13
-00:00:55.280 --> 00:00:57.240 line:94%,end position:50%,center size:90% align:center
-We treat them as a continuous population.
+00:01:00.311 --> 00:01:03.950 line:94%,end position:50%,center size:90% align:center
+How should we assign workers to factories?
 
 14
-00:00:58.280 --> 00:01:03.950 line:94%,end position:50%,center size:90% align:center
-The question is simple. How should we assign
-workers to factories?
+00:01:04.540 --> 00:01:07.920 line:94%,end position:50%,center size:90% align:center
+To see what an assignment means, look at this worker's commute.
 
 15
-00:01:04.540 --> 00:01:07.920 line:94%,end position:50%,center size:90% align:center
-To see what an assignment means, look at this
-worker&#x27;s commute.
+00:01:08.760 --> 00:01:11.820 line:94%,end position:50%,center size:90% align:center
+An assignment gives a destination to every worker.
 
 16
-00:01:08.760 --> 00:01:11.820 line:94%,end position:50%,center size:90% align:center
-An assignment gives a destination to every
-worker.
+00:01:12.480 --> 00:01:17.860 line:94%,end position:50%,center size:90% align:center
+This divides the square into regions, one for each factory. We call this a partition.
 
 17
-00:01:12.480 --> 00:01:16.100 line:94%,end position:50%,center size:90% align:center
-This divides the square into regions, one for
-each factory.
+00:01:19.240 --> 00:01:23.100 line:94%,end position:50%,center size:90% align:center
+The colored regions collect the workers who go to the same factory.
 
 18
-00:01:16.820 --> 00:01:17.860 line:94%,end position:50%,center size:90% align:center
-We call this a partition.
+00:01:23.700 --> 00:01:26.580 line:94%,end position:50%,center size:90% align:center
+Everyone in the green regions goes to the green factory.
 
 19
-00:01:19.240 --> 00:01:23.100 line:94%,end position:50%,center size:90% align:center
-The colored regions collect the workers who go
-to the same factory.
+00:01:27.820 --> 00:01:32.660 line:94%,end position:50%,center size:90% align:center
+But not every assignment is allowed. There is a staffing requirement.
 
 20
-00:01:23.700 --> 00:01:26.580 line:94%,end position:50%,center size:90% align:center
-Everyone in the green regions goes to the green
-factory.
+00:01:32.660 --> 00:01:36.602 line:94%,end position:50%,center size:90% align:center
+Every factory needs the same share of workers.
 
 21
-00:01:27.820 --> 00:01:30.340 line:94%,end position:50%,center size:90% align:center
-But not every assignment is allowed.
+00:01:36.602 --> 00:01:41.478 line:94%,end position:50%,center size:90% align:center
+With six factories, each get one sixth of the population.
 
 22
-00:01:31.120 --> 00:01:32.660 line:94%,end position:50%,center size:90% align:center
-There is a staffing requirement.
+00:01:41.478 --> 00:01:47.116 line:94%,end position:50%,center size:90% align:center
+Because the workers are spread evenly, their regions must have equal area.
 
 23
-00:01:32.660 --> 00:01:38.280 line:94%,end position:50%,center size:90% align:center
-Every factory needs the same share of workers.
-With six factories,
+00:01:47.116 --> 00:01:56.336 line:94%,end position:50%,center size:90% align:center
+For example, if every worker goes to the nearest factory, some factories may receive more workers and others fewer.
 
 24
-00:01:38.280 --> 00:01:39.760 line:94%,end position:50%,center size:90% align:center
-each get one
+00:01:56.336 --> 00:01:59.360 line:94%,end position:50%,center size:90% align:center
+This would not meet our equal staffing requirement.
 
 25
-00:01:39.760 --> 00:01:45.200 line:94%,end position:50%,center size:90% align:center
-sixth of the population because the workers are
-spread evenly their regions
+00:02:02.520 --> 00:02:06.160 line:94%,end position:50%,center size:90% align:center
+Now let's define the transportation cost we want to optimize.
 
 26
-00:01:45.200 --> 00:01:50.400 line:94%,end position:50%,center size:90% align:center
-must have equal area for example if every worker
-goes to
+00:02:07.460 --> 00:02:15.720 line:94%,end position:50%,center size:90% align:center
+If a worker lives at x and travel to the factory at xi, one natural cost is the distance dx xi.
 
 27
-00:01:50.400 --> 00:01:52.600 line:94%,end position:50%,center size:90% align:center
-the nearest factory some
+00:02:16.020 --> 00:02:21.600 line:94%,end position:50%,center size:90% align:center
+This is a well-established model but the corresponding fluctuation problem is still open.
 
 28
-00:01:52.600 --> 00:01:58.060 line:94%,end position:50%,center size:90% align:center
-factories may receive more workers and others
-fewer this would not meet our
+00:02:22.320 --> 00:02:29.940 line:94%,end position:50%,center size:90% align:center
+In this project, we instead use the squared distance dx xi squared. This is also a reasonable model.
 
 29
-00:01:58.060 --> 00:01:59.360 line:94%,end position:50%,center size:90% align:center
-equal staffing requirement.
+00:02:30.580 --> 00:02:35.680 line:94%,end position:50%,center size:90% align:center
+A ten-hour flight can feel more than twice as exhausting as a five-hour flight.
 
 30
-00:02:02.520 --> 00:02:06.160 line:94%,end position:50%,center size:90% align:center
-Now let&#x27;s define the transportation cost we
-want to optimize.
+00:02:36.860 --> 00:02:40.720 line:94%,end position:50%,center size:90% align:center
+With this cost in place, we can now choose the best assignment.
 
 31
-00:02:07.460 --> 00:02:11.840 line:94%,end position:50%,center size:90% align:center
-If a worker lives at x and travel to the factory
-at xi,
+00:02:41.580 --> 00:02:49.200 line:94%,end position:50%,center size:90% align:center
+After fixing the randomly chosen factory locations, we can partition the square into regions, one for each factory.
 
 32
-00:02:12.240 --> 00:02:15.720 line:94%,end position:50%,center size:90% align:center
-one natural cost is the distance dx xi.
+00:02:49.580 --> 00:02:54.920 line:94%,end position:50%,center size:90% align:center
+We want the smallest total transportation cost while keeping the worker share equal.
 
 33
-00:02:16.020 --> 00:02:19.180 line:94%,end position:50%,center size:90% align:center
-This is a well-established model but the
-corresponding
+00:02:54.920 --> 00:02:59.400 line:94%,end position:50%,center size:90% align:center
+Finding the best assignment is the optimal matching problem.
 
 34
-00:02:19.180 --> 00:02:21.600 line:94%,end position:50%,center size:90% align:center
-fluctuation problem is still open.
+00:03:00.720 --> 00:03:04.760 line:94%,end position:50%,center size:90% align:center
+With squared distance cost, an optimal assignment exists.
 
 35
-00:02:22.320 --> 00:02:27.560 line:94%,end position:50%,center size:90% align:center
-In this project, we instead use the squared
-distance dx xi squared.
-
-36
-00:02:27.560 --> 00:02:29.940 line:94%,end position:50%,center size:90% align:center
-This is also a reasonable model.
-
-37
-00:02:30.580 --> 00:02:35.680 line:94%,end position:50%,center size:90% align:center
-A ten-hour flight can feel more than twice as
-exhausting as a five-hour flight.
-
-38
-00:02:36.860 --> 00:02:40.720 line:94%,end position:50%,center size:90% align:center
-With this cost in place, we can now choose the
-best assignment.
-
-39
-00:02:41.580 --> 00:02:44.640 line:94%,end position:50%,center size:90% align:center
-After fixing the randomly chosen factory
-locations,
-
-40
-00:02:45.720 --> 00:02:49.200 line:94%,end position:50%,center size:90% align:center
-we can partition the square into regions, one
-for each factory.
-
-41
-00:02:49.580 --> 00:02:54.920 line:94%,end position:50%,center size:90% align:center
-We want the smallest total transportation cost
-while keeping the worker share equal.
-
-42
-00:02:54.920 --> 00:02:59.400 line:94%,end position:50%,center size:90% align:center
-Finding the best assignment is the optimal
-matching problem.
-
-43
-00:03:00.720 --> 00:03:04.760 line:94%,end position:50%,center size:90% align:center
-With squared distance cost, an optimal
-assignment exists.
-
-44
 00:03:05.540 --> 00:03:08.220 line:94%,end position:50%,center size:90% align:center
 It divides the square into convex polygons.
 
-45
+36
 00:03:08.780 --> 00:03:12.620 line:94%,end position:50%,center size:90% align:center
-This simple geometry is one advantage of squared
-distance cost.
+This simple geometry is one advantage of squared distance cost.
 
-46
+37
 00:03:14.040 --> 00:03:17.140 line:94%,end position:50%,center size:90% align:center
-The same problem can be posed in higher
-dimensions.
+The same problem can be posed in higher dimensions.
 
-47
+38
 00:03:18.020 --> 00:03:21.580 line:94%,end position:50%,center size:90% align:center
-In dimension 3, the unit square becomes a unit
-cube.
+In dimension 3, the unit square becomes a unit cube.
 
-48
+39
 00:03:22.200 --> 00:03:25.660 line:94%,end position:50%,center size:90% align:center
 Here, 3 factories sits on its front face.
 
-49
-00:03:26.620 --> 00:03:29.000 line:94%,end position:50%,center size:90% align:center
-Each colored region contains the worker
+40
+00:03:26.620 --> 00:03:32.640 line:94%,end position:50%,center size:90% align:center
+Each colored region contains the worker assigned to one factory and extends through the cube.
 
-50
-00:03:29.000 --> 00:03:32.640 line:94%,end position:50%,center size:90% align:center
-assigned to one factory and extends through the
-cube.
-
-51
+41
 00:03:33.520 --> 00:03:36.080 line:94%,end position:50%,center size:90% align:center
 Each occupies one third of its volume.
 
-52
-00:03:37.040 --> 00:03:40.980 line:94%,end position:50%,center size:90% align:center
-These regions are convex polytopes, the
-3-dimensional counterparts
+42
+00:03:37.040 --> 00:03:42.621 line:94%,end position:50%,center size:90% align:center
+These regions are convex polytopes, the 3-dimensional counterparts of convex polygons.
 
-53
-00:03:40.980 --> 00:03:44.180 line:94%,end position:50%,center size:90% align:center
-of convex polygons. Higher dimensional
+43
+00:03:42.621 --> 00:03:48.840 line:94%,end position:50%,center size:90% align:center
+Higher dimensional geometry is difficult to visualize, especially beyond dimension 3.
 
-54
-00:03:44.180 --> 00:03:48.840 line:94%,end position:50%,center size:90% align:center
-geometry is difficult to visualize, especially
-beyond dimension 3.
+44
+00:03:49.320 --> 00:03:54.520 line:94%,end position:50%,center size:90% align:center
+So we will use 2-dimensional drawings with convex polygons to illustrate the ideas.
 
-55
-00:03:49.320 --> 00:03:50.800 line:94%,end position:50%,center size:90% align:center
-So we will use 2-dimensional
+45
+00:03:55.940 --> 00:04:01.180 line:94%,end position:50%,center size:90% align:center
+For the rest of the story, imagine that opposite edges of the square are joined.
 
-56
-00:03:50.800 --> 00:03:54.520 line:94%,end position:50%,center size:90% align:center
-drawings with convex polygons to illustrate the
-ideas.
+46
+00:04:01.960 --> 00:04:05.200 line:94%,end position:50%,center size:90% align:center
+Leave through the left edge and you return through the right.
 
-57
-00:03:55.940 --> 00:03:57.220 line:94%,end position:50%,center size:90% align:center
-For the rest of the story,
-
-58
-00:03:57.660 --> 00:04:01.180 line:94%,end position:50%,center size:90% align:center
-imagine that opposite edges of the square are
-joined.
-
-59
-00:04:01.960 --> 00:04:03.420 line:94%,end position:50%,center size:90% align:center
-Leave through the left edge
-
-60
-00:04:03.420 --> 00:04:05.200 line:94%,end position:50%,center size:90% align:center
-and you return through the right.
-
-61
+47
 00:04:06.200 --> 00:04:08.680 line:94%,end position:50%,center size:90% align:center
 This gives us a world without a boundary.
 
-62
+48
 00:04:09.440 --> 00:04:15.620 line:94%,end position:50%,center size:90% align:center
-The two-dimensional torus, called T2, with side
-length one in each direction.
+The two-dimensional torus, called T2, with side length one in each direction.
 
-63
+49
 00:04:16.120 --> 00:04:20.860 line:94%,end position:50%,center size:90% align:center
-This Distances use the shortest route, including
-routes that wrap around.
+This Distances use the shortest route, including routes that wrap around.
 
-64
-00:04:22.120 --> 00:04:26.660 line:94%,end position:50%,center size:90% align:center
-In dimension three, we join each face of the
-unit cube to its opposite
+50
+00:04:22.120 --> 00:04:31.120 line:94%,end position:50%,center size:90% align:center
+In dimension three, we join each face of the unit cube to its opposite side, leaving through one face brings you back through the opposite side.
 
-65
-00:04:26.660 --> 00:04:31.120 line:94%,end position:50%,center size:90% align:center
-side, leaving through one face brings you back
-through the opposite side.
-
-66
+51
 00:04:31.940 --> 00:04:34.400 line:94%,end position:50%,center size:90% align:center
 This is the 3-dimensional torus T3.
 
-67
-00:04:35.060 --> 00:04:39.680 line:94%,end position:50%,center size:90% align:center
-In D dimensions, we make the same identification
-on the unit cube
+52
+00:04:35.060 --> 00:04:43.660 line:94%,end position:50%,center size:90% align:center
+In D dimensions, we make the same identification on the unit cube to obtain Td, with side length 1 in each direction.
 
-68
-00:04:39.680 --> 00:04:42.340 line:94%,end position:50%,center size:90% align:center
-to obtain Td, with side length
+53
+00:04:43.660 --> 00:04:52.200 line:94%,end position:50%,center size:90% align:center
+We work on the torus because it removes boundary effects and gives us access to additional mathematical tools.
 
-69
-00:04:42.340 --> 00:04:43.660 line:94%,end position:50%,center size:90% align:center
-1 in each direction.
-
-70
-00:04:43.660 --> 00:04:48.920 line:94%,end position:50%,center size:90% align:center
-We work on the torus because it removes boundary
-effects and
-
-71
-00:04:48.920 --> 00:04:52.200 line:94%,end position:50%,center size:90% align:center
-gives us access to additional mathematical
-tools.
-
-72
+54
 00:04:52.940 --> 00:04:55.920 line:94%,end position:50%,center size:90% align:center
-We won&#x27;t discuss these advantages in
-details here.
+We won't discuss these advantages in details here.
 
-73
+55
 00:04:56.420 --> 00:04:58.860 line:94%,end position:50%,center size:90% align:center
 The paper explains how they enter the proofs.
 
-74
-00:05:01.240 --> 00:05:03.480 line:94%,end position:50%,center size:90% align:center
-We now have a concrete model and a question.
+56
+00:05:01.240 --> 00:05:05.780 line:94%,end position:50%,center size:90% align:center
+We now have a concrete model and a question. Let's define everything clearly.
 
-75
-00:05:04.560 --> 00:05:05.780 line:94%,end position:50%,center size:90% align:center
-Let&#x27;s define everything clearly.
-
-76
+57
 00:05:06.740 --> 00:05:12.540 line:94%,end position:50%,center size:90% align:center
-Write Wn for the optimal matching cost of n
-factories at X1 to Xn in TD.
+Write Wn for the optimal matching cost of n factories at X1 to Xn in TD.
 
-77
-00:05:12.540 --> 00:05:18.060 line:94%,end position:50%,center size:90% align:center
-For each factory xi, let ai be its assigned
-worker region.
+58
+00:05:12.540 --> 00:05:20.720 line:94%,end position:50%,center size:90% align:center
+For each factory xi, let ai be its assigned worker region. This region partitioned the torus.
 
-78
-00:05:18.720 --> 00:05:20.720 line:94%,end position:50%,center size:90% align:center
-This region partitioned the torus.
-
-79
+59
 00:05:21.280 --> 00:05:24.780 line:94%,end position:50%,center size:90% align:center
 The uniform worker measure mu has total mass 1.
 
-80
+60
 00:05:25.380 --> 00:05:29.380 line:94%,end position:50%,center size:90% align:center
-So equal staffing means mu of Ai equals one over
-n.
+So equal staffing means mu of Ai equals one over n.
 
-81
-00:05:30.240 --> 00:05:35.460 line:94%,end position:50%,center size:90% align:center
-With dx xi denoting the torus distance, the
-integral adds the squared
+61
+00:05:30.240 --> 00:05:38.480 line:94%,end position:50%,center size:90% align:center
+With dx xi denoting the torus distance, the integral adds the squared distance transportation cost across ai.
 
-82
-00:05:35.460 --> 00:05:38.480 line:94%,end position:50%,center size:90% align:center
-distance transportation cost across ai.
+62
+00:05:38.480 --> 00:05:45.680 line:94%,end position:50%,center size:90% align:center
+We sum over all factories, then minimize over all partitions satisfying this equal staffing requirement.
 
-83
-00:05:38.480 --> 00:05:43.900 line:94%,end position:50%,center size:90% align:center
-We sum over all factories, then minimize over
-all partitions satisfying
-
-84
-00:05:43.900 --> 00:05:45.680 line:94%,end position:50%,center size:90% align:center
-this equal staffing requirement.
-
-85
+63
 00:05:48.300 --> 00:05:53.820 line:94%,end position:50%,center size:90% align:center
-Because the factory locations are random, the
-matching cost WN is also random.
+Because the factory locations are random, the matching cost WN is also random.
 
-86
+64
 00:05:54.580 --> 00:05:57.800 line:94%,end position:50%,center size:90% align:center
 Now let the number of factories n become large.
 
-87
+65
 00:05:59.320 --> 00:06:02.280 line:94%,end position:50%,center size:90% align:center
 How does the average transport cost depend on n?
 
-88
+66
 00:06:03.000 --> 00:06:06.060 line:94%,end position:50%,center size:90% align:center
-How large is the variation measured by the
-variance?
+How large is the variation measured by the variance?
 
-89
-00:06:06.060 --> 00:06:11.260 line:94%,end position:50%,center size:90% align:center
-And after subtracting the average and rescaling
-the fluctuations, do
+67
+00:06:06.060 --> 00:06:13.340 line:94%,end position:50%,center size:90% align:center
+And after subtracting the average and rescaling the fluctuations, do we see a fixed limiting distribution?
 
-90
-00:06:11.260 --> 00:06:13.340 line:94%,end position:50%,center size:90% align:center
-we see a fixed limiting distribution?
-
-91
+68
 00:06:14.480 --> 00:06:17.140 line:94%,end position:50%,center size:90% align:center
 These are the three questions we want to answer.
 
-92
+69
 00:06:18.180 --> 00:06:22.180 line:94%,end position:50%,center size:90% align:center
-Let&#x27;s first try to understand the
-expectation of the matching cost.
+Let's first try to understand the expectation of the matching cost.
 
-93
-00:06:22.740 --> 00:06:26.720 line:94%,end position:50%,center size:90% align:center
-More factories mean shorter transportation
-distances, so how quickly
+70
+00:06:22.740 --> 00:06:29.620 line:94%,end position:50%,center size:90% align:center
+More factories mean shorter transportation distances, so how quickly does the expectation decrease as n grows?
 
-94
-00:06:26.720 --> 00:06:29.620 line:94%,end position:50%,center size:90% align:center
-does the expectation decrease as n grows?
+71
+00:06:29.620 --> 00:06:37.180 line:94%,end position:50%,center size:90% align:center
+Suppose we temporarily ignore the staffing requirement that every factory needs to receive an equal share of workers.
 
-95
-00:06:29.620 --> 00:06:35.240 line:94%,end position:50%,center size:90% align:center
-Suppose we temporarily ignore the staffing
-requirement that every factory needs
-
-96
-00:06:35.240 --> 00:06:37.180 line:94%,end position:50%,center size:90% align:center
-to receive an equal share of workers.
-
-97
-00:06:38.000 --> 00:06:42.780 line:94%,end position:50%,center size:90% align:center
+72
+00:06:38.000 --> 00:06:41.019 line:94%,end position:50%,center size:90% align:center
 Each worker can then go to the nearest factory.
-On the d-dimensional torus,
 
-98
-00:06:43.320 --> 00:06:47.120 line:94%,end position:50%,center size:90% align:center
-The typical distance to that factory is of order
-n to the power of
+73
+00:06:41.019 --> 00:06:48.448 line:94%,end position:50%,center size:90% align:center
+On the d-dimensional torus, The typical distance to that factory is of order n to the power of negative 1 over d.
 
-99
-00:06:47.120 --> 00:06:53.060 line:94%,end position:50%,center size:90% align:center
-negative 1 over d. Since our cost is squared
-distance, this gives a first guess that
+74
+00:06:48.448 --> 00:06:57.940 line:94%,end position:50%,center size:90% align:center
+Since our cost is squared distance, this gives a first guess that expectation of wn is of order n to the power of negative 2 over d.
 
-100
-00:06:53.060 --> 00:06:57.940 line:94%,end position:50%,center size:90% align:center
-expectation of wn is of order n to the power of
-negative 2 over d.
-
-101
+75
 00:06:57.940 --> 00:07:02.200 line:94%,end position:50%,center size:90% align:center
-This nearest-factory guess is incorrect in
-dimension two.
+This nearest-factory guess is incorrect in dimension two.
 
-102
+76
 00:07:02.820 --> 00:07:05.380 line:94%,end position:50%,center size:90% align:center
 The blue arrow points to the nearest factory.
 
-103
-00:07:05.840 --> 00:07:10.660 line:94%,end position:50%,center size:90% align:center
-The orange arrow points to the factory worker is
-actually assigned to, which may be
+77
+00:07:05.840 --> 00:07:09.914 line:94%,end position:50%,center size:90% align:center
+The orange arrow points to the factory worker is actually assigned to,
 
-104
-00:07:10.660 --> 00:07:14.500 line:94%,end position:50%,center size:90% align:center
-farther away because every factory must receive
-an equal share of workers.
+78
+00:07:09.914 --> 00:07:14.500 line:94%,end position:50%,center size:90% align:center
+which may be farther away because every factory must receive an equal share of workers.
 
-105
-00:07:15.260 --> 00:07:20.380 line:94%,end position:50%,center size:90% align:center
-In dimension 2, a typical worker needs to travel
-a distance of order square root of
+79
+00:07:15.260 --> 00:07:22.316 line:94%,end position:50%,center size:90% align:center
+In dimension 2, a typical worker needs to travel a distance of order square root of log n over square root of n,
 
-106
-00:07:20.380 --> 00:07:25.120 line:94%,end position:50%,center size:90% align:center
-log n over square root of n, instead of one over
-the square root of n.
+80
+00:07:22.316 --> 00:07:25.120 line:94%,end position:50%,center size:90% align:center
+instead of one over the square root of n.
 
-107
-00:07:25.740 --> 00:07:29.240 line:94%,end position:50%,center size:90% align:center
-For dimensions three and larger, both distance
-scales
+81
+00:07:25.740 --> 00:07:31.840 line:94%,end position:50%,center size:90% align:center
+For dimensions three and larger, both distance scales are n to the power of negative 1 over d.
 
-108
-00:07:29.240 --> 00:07:31.840 line:94%,end position:50%,center size:90% align:center
-are n to the power of negative 1 over d.
-
-109
+82
 00:07:32.200 --> 00:07:35.480 line:94%,end position:50%,center size:90% align:center
-So the nearest-factory guess has the correct
-order.
+So the nearest-factory guess has the correct order.
 
-110
+83
 00:07:36.360 --> 00:07:40.960 line:94%,end position:50%,center size:90% align:center
-Beyond the unexpected log n factor, there is
-another surprise.
+Beyond the unexpected log n factor, there is another surprise.
 
-111
-00:07:41.700 --> 00:07:43.140 line:94%,end position:50%,center size:90% align:center
-In dimension 2, the leading
+84
+00:07:41.700 --> 00:07:45.800 line:94%,end position:50%,center size:90% align:center
+In dimension 2, the leading constant is exactly 1 over 4 pi.
 
-112
-00:07:43.140 --> 00:07:45.800 line:94%,end position:50%,center size:90% align:center
-constant is exactly 1 over 4 pi.
-
-113
+85
 00:07:46.600 --> 00:07:51.120 line:94%,end position:50%,center size:90% align:center
-Now that we understand the expectation,
-let&#x27;s look at the fluctuations.
+Now that we understand the expectation, let's look at the fluctuations.
 
-114
+86
 00:07:52.060 --> 00:07:55.860 line:94%,end position:50%,center size:90% align:center
-Each picture has six factories, but their
-locations differ.
+Each picture has six factories, but their locations differ.
 
-115
+87
 00:07:56.580 --> 00:07:59.360 line:94%,end position:50%,center size:90% align:center
-The workers are spread uniformly in all three
-pictures.
+The workers are spread uniformly in all three pictures.
 
-116
-00:07:59.880 --> 00:08:02.880 line:94%,end position:50%,center size:90% align:center
-On the left, the factories are clustered, so
+88
+00:07:59.880 --> 00:08:06.260 line:94%,end position:50%,center size:90% align:center
+On the left, the factories are clustered, so workers must travel farther and the matching cost is high.
 
-117
-00:08:02.880 --> 00:08:06.260 line:94%,end position:50%,center size:90% align:center
-workers must travel farther and the matching
-cost is high.
+89
+00:08:06.960 --> 00:08:11.600 line:94%,end position:50%,center size:90% align:center
+In the middle, the factories are placed randomly, giving an intermediate cost.
 
-118
-00:08:06.960 --> 00:08:08.120 line:94%,end position:50%,center size:90% align:center
-In the middle, the factories
+90
+00:08:12.340 --> 00:08:16.400 line:94%,end position:50%,center size:90% align:center
+On the right, they are more evenly spread, giving a lower cost.
 
-119
-00:08:08.120 --> 00:08:11.600 line:94%,end position:50%,center size:90% align:center
-are placed randomly, giving an intermediate
-cost.
+91
+00:08:18.200 --> 00:08:22.440 line:94%,end position:50%,center size:90% align:center
+The numbers show the computed optimal cost for this particular pictures.
 
-120
-00:08:12.340 --> 00:08:14.780 line:94%,end position:50%,center size:90% align:center
-On the right, they are more evenly spread,
-
-121
-00:08:14.780 --> 00:08:16.400 line:94%,end position:50%,center size:90% align:center
-giving a lower cost.
-
-122
-00:08:18.200 --> 00:08:21.500 line:94%,end position:50%,center size:90% align:center
-The numbers show the computed optimal cost for
-this
-
-123
-00:08:21.500 --> 00:08:22.440 line:94%,end position:50%,center size:90% align:center
-particular pictures.
-
-124
+92
 00:08:23.240 --> 00:08:27.560 line:94%,end position:50%,center size:90% align:center
-When the factory locations are random, how large
-is the variance of Wn?
+When the factory locations are random, how large is the variance of Wn?
 
-125
-00:08:28.540 --> 00:08:32.620 line:94%,end position:50%,center size:90% align:center
-After centering and rescaling, do its
-fluctuation approach a
+93
+00:08:28.540 --> 00:08:33.460 line:94%,end position:50%,center size:90% align:center
+After centering and rescaling, do its fluctuation approach a limiting distribution?
 
-126
-00:08:32.620 --> 00:08:33.460 line:94%,end position:50%,center size:90% align:center
-limiting distribution?
+94
+00:08:34.600 --> 00:08:41.820 line:94%,end position:50%,center size:90% align:center
+Our two papers answers these two questions and the reveal unexpected behavior in both the variance and the limiting distribution.
 
-127
-00:08:34.600 --> 00:08:37.780 line:94%,end position:50%,center size:90% align:center
-Our two papers answers these two questions and
-the reveal
-
-128
-00:08:37.780 --> 00:08:41.820 line:94%,end position:50%,center size:90% align:center
-unexpected behavior in both the variance and the
-limiting distribution.
-
-129
+95
 00:08:41.820 --> 00:08:45.940 line:94%,end position:50%,center size:90% align:center
-In dimensions two and three, the variance has
-the same scale.
+In dimensions two and three, the variance has the same scale.
 
-130
+96
 00:08:46.600 --> 00:08:49.680 line:94%,end position:50%,center size:90% align:center
 In dimension four, an extra log factor appears.
 
-131
-00:08:50.600 --> 00:08:52.240 line:94%,end position:50%,center size:90% align:center
-In dimensions 5 and higher,
+97
+00:08:50.600 --> 00:08:55.000 line:94%,end position:50%,center size:90% align:center
+In dimensions 5 and higher, the variance grows in a more regular way.
 
-132
-00:08:52.580 --> 00:08:55.000 line:94%,end position:50%,center size:90% align:center
-the variance grows in a more regular way.
-
-133
+98
 00:08:55.760 --> 00:08:58.940 line:94%,end position:50%,center size:90% align:center
-The limiting distribution also has an
-interesting transition.
+The limiting distribution also has an interesting transition.
 
-134
+99
 00:08:59.640 --> 00:09:05.080 line:94%,end position:50%,center size:90% align:center
-It is non-Gaussian in dimensions two and three,
-but Gaussian from dimension 4 and onward.
+It is non-Gaussian in dimensions two and three, but Gaussian from dimension 4 and onward.
 
-135
-00:09:05.860 --> 00:09:11.860 line:94%,end position:50%,center size:90% align:center
-In these unusual low-dimensional cases, we can
-also identify the exact leading constant
+100
+00:09:05.860 --> 00:09:12.800 line:94%,end position:50%,center size:90% align:center
+In these unusual low-dimensional cases, we can also identify the exact leading constant in the variance.
 
-136
-00:09:11.860 --> 00:09:12.800 line:94%,end position:50%,center size:90% align:center
-in the variance.
-
-137
+101
 00:09:13.540 --> 00:09:18.260 line:94%,end position:50%,center size:90% align:center
-In dimension 2 and 3, the constants are given by
-explicit lattice sum.
+In dimension 2 and 3, the constants are given by explicit lattice sum.
 
-138
+102
 00:09:18.860 --> 00:09:22.700 line:94%,end position:50%,center size:90% align:center
-In dimension 4, the constant has a simple closed
-form.
+In dimension 4, the constant has a simple closed form.
 
-139
-00:09:23.180 --> 00:09:24.700 line:94%,end position:50%,center size:90% align:center
-Interestingly, all three
+103
+00:09:23.180 --> 00:09:29.960 line:94%,end position:50%,center size:90% align:center
+Interestingly, all three constants also involve pi, just like the expectation constant we saw earlier.
 
-140
-00:09:24.700 --> 00:09:29.960 line:94%,end position:50%,center size:90% align:center
-constants also involve pi, just like the
-expectation constant we saw earlier.
-
-141
+104
 00:09:30.760 --> 00:09:33.980 line:94%,end position:50%,center size:90% align:center
-These results show two different critical
-dimensions.
+These results show two different critical dimensions.
 
-142
+105
 00:09:34.820 --> 00:09:39.240 line:94%,end position:50%,center size:90% align:center
-Dimension 2 is special for expectation because
-of the extra log n factor.
+Dimension 2 is special for expectation because of the extra log n factor.
 
-143
+106
 00:09:39.960 --> 00:09:41.960 line:94%,end position:50%,center size:90% align:center
 Dimension 4 is special for fluctuations.
 
-144
+107
 00:09:42.860 --> 00:09:46.420 line:94%,end position:50%,center size:90% align:center
-Both the variance scale and the limiting
-distribution change there.
+Both the variance scale and the limiting distribution change there.
 
-145
+108
 00:09:47.160 --> 00:09:49.400 line:94%,end position:50%,center size:90% align:center
 These results are both surprising and precise.
 
-146
-00:09:50.360 --> 00:09:52.040 line:94%,end position:50%,center size:90% align:center
-How can we obtain such a detailed
+109
+00:09:50.360 --> 00:09:54.300 line:94%,end position:50%,center size:90% align:center
+How can we obtain such a detailed understanding of these unusual fluctuations?
 
-147
-00:09:52.040 --> 00:09:54.300 line:94%,end position:50%,center size:90% align:center
-understanding of these unusual fluctuations?
+110
+00:09:55.820 --> 00:10:03.160 line:94%,end position:50%,center size:90% align:center
+Explicit limiting distributions are difficult to obtain in random optimization problems, especially non-Gaussian limits.
 
-148
-00:09:55.820 --> 00:09:59.860 line:94%,end position:50%,center size:90% align:center
-Explicit limiting distributions are difficult to
-obtain in random
+111
+00:10:04.000 --> 00:10:10.280 line:94%,end position:50%,center size:90% align:center
+Classical examples where such limiting distributions are known include the exactly solvable models in the KPZ family.
 
-149
-00:09:59.860 --> 00:10:01.960 line:94%,end position:50%,center size:90% align:center
-optimization problems, especially
+112
+00:10:10.920 --> 00:10:17.400 line:94%,end position:50%,center size:90% align:center
+We won't explain these models here, but such precise results are possible because the exact formula are available.
 
-150
-00:10:01.960 --> 00:10:03.160 line:94%,end position:50%,center size:90% align:center
-non-Gaussian limits.
+113
+00:10:17.960 --> 00:10:24.938 line:94%,end position:50%,center size:90% align:center
+For example, the formula shown here expresses the cumulative distribution function as a Fredholm determinant.
 
-151
-00:10:04.000 --> 00:10:07.540 line:94%,end position:50%,center size:90% align:center
-Classical examples where such limiting
-distributions are known include
+114
+00:10:24.938 --> 00:10:27.420 line:94%,end position:50%,center size:90% align:center
+For optimal matching, the reason is different.
 
-152
-00:10:07.540 --> 00:10:10.280 line:94%,end position:50%,center size:90% align:center
-the exactly solvable models in the KPZ family.
+115
+00:10:28.100 --> 00:10:32.840 line:94%,end position:50%,center size:90% align:center
+Kantorovich duality is the main tool, and it's the starting point of the whole argument.
 
-153
-00:10:10.920 --> 00:10:13.880 line:94%,end position:50%,center size:90% align:center
-We won&#x27;t explain these models here, but
-such
-
-154
-00:10:13.880 --> 00:10:17.400 line:94%,end position:50%,center size:90% align:center
-precise results are possible because the exact
-formula are available.
-
-155
-00:10:17.960 --> 00:10:19.680 line:94%,end position:50%,center size:90% align:center
-For example, the formula
-
-156
-00:10:19.680 --> 00:10:25.680 line:94%,end position:50%,center size:90% align:center
-shown here expresses the cumulative distribution
-function as a Fredholm determinant. For optimal
-
-157
-00:10:25.680 --> 00:10:27.420 line:94%,end position:50%,center size:90% align:center
-matching, the reason is different.
-
-158
-00:10:28.100 --> 00:10:31.340 line:94%,end position:50%,center size:90% align:center
-Kantorovich duality is the main tool, and
-it&#x27;s the starting
-
-159
-00:10:31.340 --> 00:10:32.840 line:94%,end position:50%,center size:90% align:center
-point of the whole argument.
-
-160
+116
 00:10:34.280 --> 00:10:37.640 line:94%,end position:50%,center size:90% align:center
-There are many ways to understand Kantorovich
-duality.
+There are many ways to understand Kantorovich duality.
 
-161
-00:10:38.020 --> 00:10:42.360 line:94%,end position:50%,center size:90% align:center
-Here, I will use an interpretation that I find
-intuitive for this
+117
+00:10:38.020 --> 00:10:45.480 line:94%,end position:50%,center size:90% align:center
+Here, I will use an interpretation that I find intuitive for this problem, although it's not the usual textbook presentation.
 
-162
-00:10:42.360 --> 00:10:45.480 line:94%,end position:50%,center size:90% align:center
-problem, although it&#x27;s not the usual
-textbook presentation.
-
-163
+118
 00:10:46.700 --> 00:10:48.340 line:94%,end position:50%,center size:90% align:center
 Recall our original problem.
 
-164
-00:10:49.180 --> 00:10:53.000 line:94%,end position:50%,center size:90% align:center
-The factories are placed randomly, and we divide
-the workers into
+119
+00:10:49.180 --> 00:10:56.720 line:94%,end position:50%,center size:90% align:center
+The factories are placed randomly, and we divide the workers into regions like this, assigning each region to one factory.
 
-165
-00:10:53.000 --> 00:10:55.260 line:94%,end position:50%,center size:90% align:center
-regions like this, assigning
+120
+00:10:56.720 --> 00:11:04.900 line:94%,end position:50%,center size:90% align:center
+Each factory must receive equal share of worker, and we want to minimize the total squared distance transportation cost.
 
-166
-00:10:55.260 --> 00:10:56.720 line:94%,end position:50%,center size:90% align:center
-each region to one factory.
+121
+00:11:05.840 --> 00:11:11.700 line:94%,end position:50%,center size:90% align:center
+Now, instead of assigning each worker to a factory, we let the workers choose for themselves.
 
-167
-00:10:56.720 --> 00:11:01.880 line:94%,end position:50%,center size:90% align:center
-Each factory must receive equal share of worker,
-and we want to minimize
-
-168
-00:11:01.880 --> 00:11:04.900 line:94%,end position:50%,center size:90% align:center
-the total squared distance transportation cost.
-
-169
-00:11:05.840 --> 00:11:10.640 line:94%,end position:50%,center size:90% align:center
-Now, instead of assigning each worker to a
-factory, we let the workers
-
-170
-00:11:10.640 --> 00:11:11.700 line:94%,end position:50%,center size:90% align:center
-choose for themselves.
-
-171
+122
 00:11:12.780 --> 00:11:16.240 line:94%,end position:50%,center size:90% align:center
-What we do is assign different wages to
-different factories.
+What we do is assign different wages to different factories.
 
-172
-00:11:16.240 --> 00:11:21.300 line:94%,end position:50%,center size:90% align:center
-If factory xi offers wage wi, a worker at
+123
+00:11:16.240 --> 00:11:25.840 line:94%,end position:50%,center size:90% align:center
+If factory xi offers wage wi, a worker at x receives a net wage of wi minus dx xi square.
 
-173
-00:11:21.300 --> 00:11:25.840 line:94%,end position:50%,center size:90% align:center
-x receives a net wage of wi minus dx xi square.
-
-174
+124
 00:11:26.540 --> 00:11:29.740 line:94%,end position:50%,center size:90% align:center
-The wage minus the squared distance
-transportation cost.
+The wage minus the squared distance transportation cost.
 
-175
+125
 00:11:30.520 --> 00:11:33.400 line:94%,end position:50%,center size:90% align:center
-The worker chooses the factory where this is the
-largest.
+The worker chooses the factory where this is the largest.
 
-176
+126
 00:11:34.300 --> 00:11:37.840 line:94%,end position:50%,center size:90% align:center
-A higher wage can therefore make a farther
-factory more attractive.
+A higher wage can therefore make a farther factory more attractive.
 
-177
+127
 00:11:38.560 --> 00:11:41.780 line:94%,end position:50%,center size:90% align:center
-Arbitrary wages usually do not give equal
-staffing.
+Arbitrary wages usually do not give equal staffing.
 
-178
+128
 00:11:42.580 --> 00:11:46.460 line:94%,end position:50%,center size:90% align:center
-One factory may attract too many workers.
-Another too few.
+One factory may attract too many workers. Another too few.
 
-179
+129
 00:11:46.980 --> 00:11:50.540 line:94%,end position:50%,center size:90% align:center
-Changing wages moves the boundary of the worker
-regions.
+Changing wages moves the boundary of the worker regions.
 
-180
-00:11:51.280 --> 00:11:53.340 line:94%,end position:50%,center size:90% align:center
-Keeping the other wages fixed,
+130
+00:11:51.280 --> 00:11:58.800 line:94%,end position:50%,center size:90% align:center
+Keeping the other wages fixed, increasing a factory's wage attracts more workers and expands its region.
 
-181
-00:11:53.960 --> 00:11:58.800 line:94%,end position:50%,center size:90% align:center
-increasing a factory&#x27;s wage attracts more
-workers and expands its region.
-
-182
+131
 00:11:59.420 --> 00:12:01.860 line:94%,end position:50%,center size:90% align:center
 Decreasing its wage has the opposite effect.
 
-183
+132
 00:12:02.620 --> 00:12:06.260 line:94%,end position:50%,center size:90% align:center
-Fewer workers choose that factory and its region
-shrinks.
+Fewer workers choose that factory and its region shrinks.
 
-184
+133
 00:12:06.820 --> 00:12:12.060 line:94%,end position:50%,center size:90% align:center
-Wage changes let us rebalance staffing without
-assigning each worker individually.
+Wage changes let us rebalance staffing without assigning each worker individually.
 
-185
-00:12:13.300 --> 00:12:17.520 line:94%,end position:50%,center size:90% align:center
-Kantorovich duality tells us that we can choose
-wages so that
+134
+00:12:13.300 --> 00:12:21.023 line:94%,end position:50%,center size:90% align:center
+Kantorovich duality tells us that we can choose wages so that every factory receives the equal share of the workers,
 
-186
-00:12:17.520 --> 00:12:23.380 line:94%,end position:50%,center size:90% align:center
-every factory receives the equal share of the
-workers, and their choice minimizes the total
+135
+00:12:21.023 --> 00:12:24.560 line:94%,end position:50%,center size:90% align:center
+and their choice minimizes the total transportation cost.
 
-187
-00:12:23.380 --> 00:12:24.560 line:94%,end position:50%,center size:90% align:center
-transportation cost.
-
-188
+136
 00:12:25.180 --> 00:12:28.880 line:94%,end position:50%,center size:90% align:center
-This turns the matching problem into a search
-for balancing wages.
+This turns the matching problem into a search for balancing wages.
 
-189
-00:12:30.000 --> 00:12:34.620 line:94%,end position:50%,center size:90% align:center
-Economically, we can think of this as market
-adjusting towards the
+137
+00:12:30.000 --> 00:12:36.062 line:94%,end position:50%,center size:90% align:center
+Economically, we can think of this as market adjusting towards the optimal assignment.
 
-190
-00:12:34.620 --> 00:12:40.820 line:94%,end position:50%,center size:90% align:center
-optimal assignment. Suppose every factory starts
-with an arbitrary wage, some attract
+138
+00:12:36.062 --> 00:12:45.941 line:94%,end position:50%,center size:90% align:center
+Suppose every factory starts with an arbitrary wage, some attract more than their required share of workers, while others attract fewer.
 
-191
-00:12:40.820 --> 00:12:42.140 line:94%,end position:50%,center size:90% align:center
-more than their required
+139
+00:12:45.941 --> 00:12:51.740 line:94%,end position:50%,center size:90% align:center
+An overstaffed factory lowers its wage; an understaffed factory raise its wage.
 
-192
-00:12:42.140 --> 00:12:47.180 line:94%,end position:50%,center size:90% align:center
-share of workers, while others attract fewer. An
-overstaffed
+140
+00:12:52.260 --> 00:12:58.240 line:94%,end position:50%,center size:90% align:center
+With an appropriate gradual adjustment rule, this process converges to balanced staffing.
 
-193
-00:12:47.180 --> 00:12:50.120 line:94%,end position:50%,center size:90% align:center
-factory lowers its wage; an understaffed
-
-194
-00:12:50.120 --> 00:12:51.740 line:94%,end position:50%,center size:90% align:center
-factory raise its wage.
-
-195
-00:12:52.260 --> 00:12:57.000 line:94%,end position:50%,center size:90% align:center
-With an appropriate gradual adjustment rule,
-this process converges
-
-196
-00:12:57.000 --> 00:12:58.240 line:94%,end position:50%,center size:90% align:center
-to balanced staffing.
-
-197
+141
 00:12:58.960 --> 00:13:02.820 line:94%,end position:50%,center size:90% align:center
-At that point, the worker choice gives an
-optimal assignment.
+At that point, the worker choice gives an optimal assignment.
 
-198
-00:13:03.880 --> 00:13:08.380 line:94%,end position:50%,center size:90% align:center
-Mathematically, Kantorovich duality says there
-is a wage vector w
+142
+00:13:03.880 --> 00:13:08.778 line:94%,end position:50%,center size:90% align:center
+Mathematically, Kantorovich duality says there is a wage vector w star,
 
-199
-00:13:08.380 --> 00:13:14.620 line:94%,end position:50%,center size:90% align:center
-star, whose induced partition satisfies the
-staffing requirement, and for which this
-equality
+143
+00:13:08.778 --> 00:13:15.157 line:94%,end position:50%,center size:90% align:center
+whose induced partition satisfies the staffing requirement, and for which this equality holds.
 
-200
-00:13:14.620 --> 00:13:20.760 line:94%,end position:50%,center size:90% align:center
-holds, the total worker population has mass one,
-and each factory hires a share
+144
+00:13:15.157 --> 00:13:21.570 line:94%,end position:50%,center size:90% align:center
+The total worker population has mass one, and each factory hires a share one over n.
 
-201
-00:13:20.760 --> 00:13:25.420 line:94%,end position:50%,center size:90% align:center
-one over n. So the first term is the total wage
-paid by the company.
+145
+00:13:21.570 --> 00:13:25.420 line:94%,end position:50%,center size:90% align:center
+So the first term is the total wage paid by the company.
 
-202
+146
 00:13:25.860 --> 00:13:30.280 line:94%,end position:50%,center size:90% align:center
-For a worker at X, the maximum is the best net
-wage available.
+For a worker at X, the maximum is the best net wage available.
 
-203
-00:13:30.280 --> 00:13:36.120 line:94%,end position:50%,center size:90% align:center
-The factory wage minus the squared distance
-transportation cost, integrating
+147
+00:13:30.280 --> 00:13:39.500 line:94%,end position:50%,center size:90% align:center
+The factory wage minus the squared distance transportation cost, integrating adds these best net wage over all workers.
 
-204
-00:13:36.120 --> 00:13:39.500 line:94%,end position:50%,center size:90% align:center
-adds these best net wage over all workers.
+148
+00:13:40.400 --> 00:13:48.240 line:94%,end position:50%,center size:90% align:center
+The difference between the company's total wage and the workers' total net wage is the transportation cost of this optimal partition.
 
-205
-00:13:40.400 --> 00:13:45.620 line:94%,end position:50%,center size:90% align:center
-The difference between the company&#x27;s total
-wage and the workers&#x27; total net wage is the
-
-206
-00:13:45.620 --> 00:13:48.240 line:94%,end position:50%,center size:90% align:center
-transportation cost of this optimal partition.
-
-207
+149
 00:13:49.160 --> 00:13:53.840 line:94%,end position:50%,center size:90% align:center
-We now return to the fluctuation question in
-dimension 2, 3 and 4.
+We now return to the fluctuation question in dimension 2, 3 and 4.
 
-208
-00:13:54.380 --> 00:13:59.560 line:94%,end position:50%,center size:90% align:center
-Starting from Kantorovich duality, we use what
-is called the linearization
+150
+00:13:54.380 --> 00:14:00.974 line:94%,end position:50%,center size:90% align:center
+Starting from Kantorovich duality, we use what is called the linearization optimal transport.
 
-209
-00:13:59.900 --> 00:14:02.840 line:94%,end position:50%,center size:90% align:center
-optimal transport. We won&#x27;t explain this
-step here.
+151
+00:14:00.974 --> 00:14:02.840 line:94%,end position:50%,center size:90% align:center
+We won't explain this step here.
 
-210
-00:14:03.480 --> 00:14:06.420 line:94%,end position:50%,center size:90% align:center
-This gives an approximation that decompose
+152
+00:14:03.480 --> 00:14:13.380 line:94%,end position:50%,center size:90% align:center
+This gives an approximation that decompose the matching cost into a mean zero random part shown in blue and a deterministic part shown in orange.
 
-211
-00:14:06.420 --> 00:14:11.220 line:94%,end position:50%,center size:90% align:center
-the matching cost into a mean zero random part
-shown in blue and a
-
-212
-00:14:11.220 --> 00:14:13.380 line:94%,end position:50%,center size:90% align:center
-deterministic part shown in orange.
-
-213
+153
 00:14:14.200 --> 00:14:18.280 line:94%,end position:50%,center size:90% align:center
-Here, K is a cutoff controlling how much detail
-we retain.
+Here, K is a cutoff controlling how much detail we retain.
 
-214
-00:14:19.080 --> 00:14:21.100 line:94%,end position:50%,center size:90% align:center
-Both the blue and orange term have
+154
+00:14:19.080 --> 00:14:26.458 line:94%,end position:50%,center size:90% align:center
+Both the blue and orange term have simple but non-obvious formula, which are given in our low-dimensional paper.
 
-215
-00:14:21.100 --> 00:14:27.420 line:94%,end position:50%,center size:90% align:center
-simple but non-obvious formula, which are given
-in our low-dimensional paper. The blue part
+155
+00:14:26.458 --> 00:14:31.620 line:94%,end position:50%,center size:90% align:center
+The blue part controls the fluctuation, while the orange part controls the expectation.
 
-216
-00:14:27.420 --> 00:14:31.620 line:94%,end position:50%,center size:90% align:center
-controls the fluctuation, while the orange part
-controls the expectation.
-
-217
+156
 00:14:32.140 --> 00:14:35.600 line:94%,end position:50%,center size:90% align:center
 First, consider the expectation in dimension 2.
 
-218
-00:14:36.100 --> 00:14:37.220 line:94%,end position:50%,center size:90% align:center
-For the leading expectation,
+157
+00:14:36.100 --> 00:14:40.940 line:94%,end position:50%,center size:90% align:center
+For the leading expectation, we take the cutoff k equals to square root of n.
 
-219
-00:14:37.900 --> 00:14:40.940 line:94%,end position:50%,center size:90% align:center
-we take the cutoff k equals to square root of n.
+158
+00:14:41.280 --> 00:14:46.400 line:94%,end position:50%,center size:90% align:center
+This cutoff is motivated by natural scale of smoothing, which we won't discuss here.
 
-220
-00:14:41.280 --> 00:14:43.480 line:94%,end position:50%,center size:90% align:center
-This cutoff is motivated by natural
+159
+00:14:46.960 --> 00:14:54.340 line:94%,end position:50%,center size:90% align:center
+Since the blue term has mean 0, the leading-order term of the expectation is approximated by the orange term.
 
-221
-00:14:43.480 --> 00:14:46.400 line:94%,end position:50%,center size:90% align:center
-scale of smoothing, which we won&#x27;t discuss
-here.
-
-222
-00:14:46.960 --> 00:14:48.840 line:94%,end position:50%,center size:90% align:center
-Since the blue term has mean 0,
-
-223
-00:14:49.240 --> 00:14:54.340 line:94%,end position:50%,center size:90% align:center
-the leading-order term of the expectation is
-approximated by the orange term.
-
-224
+160
 00:14:54.340 --> 00:14:59.260 line:94%,end position:50%,center size:90% align:center
-This is indeed correct, and gives the leading
-constant after proper scaling.
+This is indeed correct, and gives the leading constant after proper scaling.
 
-225
+161
 00:14:59.860 --> 00:15:03.540 line:94%,end position:50%,center size:90% align:center
-Understanding the fluctuation is the main object
-of our paper.
+Understanding the fluctuation is the main object of our paper.
 
-226
-00:15:03.960 --> 00:15:08.300 line:94%,end position:50%,center size:90% align:center
-We proved that the blue term captures the
-fluctuation of the matching cost accurately
+162
+00:15:03.960 --> 00:15:12.020 line:94%,end position:50%,center size:90% align:center
+We proved that the blue term captures the fluctuation of the matching cost accurately enough to recover both the variance and the limiting distribution.
 
-227
-00:15:08.300 --> 00:15:12.020 line:94%,end position:50%,center size:90% align:center
-enough to recover both the variance and the
-limiting distribution.
-
-228
+163
 00:15:12.960 --> 00:15:17.420 line:94%,end position:50%,center size:90% align:center
-The variance of WN is therefore asymptotic to
-that of the blue term.
+The variance of WN is therefore asymptotic to that of the blue term.
 
-229
-00:15:18.100 --> 00:15:22.000 line:94%,end position:50%,center size:90% align:center
-After centering and dividing by their standard
-deviation, they have
+164
+00:15:18.100 --> 00:15:23.314 line:94%,end position:50%,center size:90% align:center
+After centering and dividing by their standard deviation, they have the same limiting law.
 
-230
-00:15:22.000 --> 00:15:27.540 line:94%,end position:50%,center size:90% align:center
-the same limiting law. Non-Gaussian in
-dimensions two and three, and Gaussian in
-dimension four.
+165
+00:15:23.314 --> 00:15:27.540 line:94%,end position:50%,center size:90% align:center
+Non-Gaussian in dimensions two and three, and Gaussian in dimension four.
 
-231
-00:15:28.120 --> 00:15:32.100 line:94%,end position:50%,center size:90% align:center
-Why doesn&#x27;t this approximation work in
-dimensions five and higher?
+166
+00:15:28.120 --> 00:15:34.380 line:94%,end position:50%,center size:90% align:center
+Why doesn't this approximation work in dimensions five and higher? let's look at those two graphs.
 
-232
-00:15:32.700 --> 00:15:34.380 line:94%,end position:50%,center size:90% align:center
-let&#x27;s look at those two graphs.
+167
+00:15:34.960 --> 00:15:41.380 line:94%,end position:50%,center size:90% align:center
+Each point along the horizontal axis represents a different factory configuration ordered by matching cost.
 
-233
-00:15:34.960 --> 00:15:39.000 line:94%,end position:50%,center size:90% align:center
-Each point along the horizontal axis represents
-a different factory
+168
+00:15:41.780 --> 00:15:47.640 line:94%,end position:50%,center size:90% align:center
+The dark curve shows the matching cost fluctuation, and the blue curve shows the simpler approximation.
 
-234
-00:15:39.000 --> 00:15:41.380 line:94%,end position:50%,center size:90% align:center
-configuration ordered by matching cost.
-
-235
-00:15:41.780 --> 00:15:45.880 line:94%,end position:50%,center size:90% align:center
-The dark curve shows the matching cost
-fluctuation, and the blue curve
-
-236
-00:15:45.880 --> 00:15:47.640 line:94%,end position:50%,center size:90% align:center
-shows the simpler approximation.
-
-237
+169
 00:15:48.380 --> 00:15:51.480 line:94%,end position:50%,center size:90% align:center
 Their values spread out along the vertical axis.
 
-238
-00:15:52.520 --> 00:15:54.220 line:94%,end position:50%,center size:90% align:center
-The shape beside it represents
+170
+00:15:52.520 --> 00:15:55.578 line:94%,end position:50%,center size:90% align:center
+The shape beside it represents their distribution.
 
-239
-00:15:54.220 --> 00:16:00.400 line:94%,end position:50%,center size:90% align:center
-their distribution. In dimensions 2, 3, and 4,
-the curves are close enough to recover both
+171
+00:15:55.578 --> 00:16:02.120 line:94%,end position:50%,center size:90% align:center
+In dimensions 2, 3, and 4, the curves are close enough to recover both the variance and limiting distribution.
 
-240
-00:16:00.400 --> 00:16:02.120 line:94%,end position:50%,center size:90% align:center
-the variance and limiting distribution.
+172
+00:16:03.240 --> 00:16:07.140 line:94%,end position:50%,center size:90% align:center
+The separation on the right illustrated the problem in higher dimensions.
 
-241
-00:16:03.240 --> 00:16:06.120 line:94%,end position:50%,center size:90% align:center
-The separation on the right illustrated the
-problem
-
-242
-00:16:06.120 --> 00:16:07.140 line:94%,end position:50%,center size:90% align:center
-in higher dimensions.
-
-243
+173
 00:16:07.980 --> 00:16:12.080 line:94%,end position:50%,center size:90% align:center
-The approximation error is no longer controlled
-at the fluctuation scale,
+The approximation error is no longer controlled at the fluctuation scale,
 
-244
-00:16:12.080 --> 00:16:16.120 line:94%,end position:50%,center size:90% align:center
-So we cannot conclude that the two have the same
-variance and the
+174
+00:16:12.080 --> 00:16:17.080 line:94%,end position:50%,center size:90% align:center
+So we cannot conclude that the two have the same variance and the limiting distribution.
 
-245
-00:16:16.120 --> 00:16:17.080 line:94%,end position:50%,center size:90% align:center
-limiting distribution.
-
-246
+175
 00:16:17.900 --> 00:16:22.100 line:94%,end position:50%,center size:90% align:center
-We therefore need a different method, which is
-the subject of the second paper.
+We therefore need a different method, which is the subject of the second paper.
 
-247
+176
 00:16:22.940 --> 00:16:26.900 line:94%,end position:50%,center size:90% align:center
-For dimensions 5 and higher, we turn to a
-perturbation method.
+For dimensions 5 and higher, we turn to a perturbation method.
 
-248
+177
 00:16:27.800 --> 00:16:30.880 line:94%,end position:50%,center size:90% align:center
-On the left, we remove the circled green
-factory.
+On the left, we remove the circled green factory.
 
-249
+178
 00:16:31.620 --> 00:16:37.660 line:94%,end position:50%,center size:90% align:center
-On the right, we build the new purple factory at
-an independent, uniformly random location.
+On the right, we build the new purple factory at an independent, uniformly random location.
 
-250
+179
 00:16:37.660 --> 00:16:41.200 line:94%,end position:50%,center size:90% align:center
 All other factory locations stay fixed.
 
-251
-00:16:42.260 --> 00:16:45.840 line:94%,end position:50%,center size:90% align:center
-Both pictures shows optimal assignments with
-equal worker shares,
+180
+00:16:42.260 --> 00:16:48.080 line:94%,end position:50%,center size:90% align:center
+Both pictures shows optimal assignments with equal worker shares, although the region boundary changes.
 
-252
-00:16:46.420 --> 00:16:48.080 line:94%,end position:50%,center size:90% align:center
-although the region boundary changes.
-
-253
+181
 00:16:48.680 --> 00:16:53.040 line:94%,end position:50%,center size:90% align:center
-We ask how much this replacement changes the
-optimal matching cost.
+We ask how much this replacement changes the optimal matching cost.
 
-254
+182
 00:16:53.040 --> 00:16:55.980 line:94%,end position:50%,center size:90% align:center
 once we understand this change precisely enough.
 
-255
-00:16:56.560 --> 00:17:00.180 line:94%,end position:50%,center size:90% align:center
-We can understand the fluctuation using standard
-method in probability,
+183
+00:16:56.560 --> 00:17:02.760 line:94%,end position:50%,center size:90% align:center
+We can understand the fluctuation using standard method in probability, which we won't explain in detail here.
 
-256
-00:17:00.520 --> 00:17:02.760 line:94%,end position:50%,center size:90% align:center
-which we won&#x27;t explain in detail here.
+184
+00:17:03.240 --> 00:17:11.340 line:94%,end position:50%,center size:90% align:center
+To study this replacement, replacement, we gradually shifted the required worker share from the old green factory to the new purple one.
 
-257
-00:17:03.240 --> 00:17:04.940 line:94%,end position:50%,center size:90% align:center
-To study this replacement,
+185
+00:17:11.940 --> 00:17:18.571 line:94%,end position:50%,center size:90% align:center
+The colored region shows staffing, and the bar shows their shares change as T move from 0 to 1.
 
-258
-00:17:04.940 --> 00:17:09.040 line:94%,end position:50%,center size:90% align:center
-replacement, we gradually shifted the required
-worker share from the
+186
+00:17:18.571 --> 00:17:25.260 line:94%,end position:50%,center size:90% align:center
+Write WN0 for the initial optimal cost, and the WN1 for the cost after replacement.
 
-259
-00:17:09.040 --> 00:17:11.340 line:94%,end position:50%,center size:90% align:center
-old green factory to the new purple one.
+187
+00:17:26.040 --> 00:17:35.460 line:94%,end position:50%,center size:90% align:center
+At time T, the share at the old factory decreased to 1 minus T over N, while the share in new factory increase to T over N.
 
-260
-00:17:11.940 --> 00:17:16.100 line:94%,end position:50%,center size:90% align:center
-The colored region shows staffing, and the bar
-shows their shares
+188
+00:17:36.280 --> 00:17:42.100 line:94%,end position:50%,center size:90% align:center
+Every other factory keeps its location and shares one over N. But the region boundary adjusts.
 
-261
-00:17:16.100 --> 00:17:17.780 line:94%,end position:50%,center size:90% align:center
-change as T move from
-
-262
-00:17:17.780 --> 00:17:22.920 line:94%,end position:50%,center size:90% align:center
-0 to 1, write WN0 for the initial optimal cost,
-and
-
-263
-00:17:22.920 --> 00:17:25.260 line:94%,end position:50%,center size:90% align:center
-the WN1 for the cost after replacement.
-
-264
-00:17:26.040 --> 00:17:30.960 line:94%,end position:50%,center size:90% align:center
-At time T, the share at the old factory
-decreased to 1 minus T over
-
-265
-00:17:30.960 --> 00:17:33.160 line:94%,end position:50%,center size:90% align:center
-N, while the share in new
-
-266
-00:17:33.160 --> 00:17:35.460 line:94%,end position:50%,center size:90% align:center
-factory increase to T over N.
-
-267
-00:17:36.280 --> 00:17:39.940 line:94%,end position:50%,center size:90% align:center
-Every other factory keeps its location and
-shares one over N.
-
-268
-00:17:40.460 --> 00:17:42.100 line:94%,end position:50%,center size:90% align:center
-But the region boundary adjusts.
-
-269
+189
 00:17:42.960 --> 00:17:46.920 line:94%,end position:50%,center size:90% align:center
-We will optimize at every stage and call the
-cost W N T.
+We will optimize at every stage and call the cost W N T.
 
-270
+190
 00:17:47.420 --> 00:17:52.540 line:94%,end position:50%,center size:90% align:center
-We want to study the change in optimal cost, W N
-1 minus W N 0.
+We want to study the change in optimal cost, W N 1 minus W N 0.
 
-271
-00:17:53.200 --> 00:17:54.440 line:94%,end position:50%,center size:90% align:center
-Integrating the derivative
+191
+00:17:53.200 --> 00:17:58.100 line:94%,end position:50%,center size:90% align:center
+Integrating the derivative along this interpolation gives the identity on the screen.
 
-272
-00:17:54.440 --> 00:17:58.100 line:94%,end position:50%,center size:90% align:center
-along this interpolation gives the identity on
-the screen.
+192
+00:17:58.580 --> 00:18:04.680 line:94%,end position:50%,center size:90% align:center
+We therefore need to understand the derivative of Wn(t). How does the optimal cost respond?
 
-273
-00:17:58.580 --> 00:17:59.940 line:94%,end position:50%,center size:90% align:center
-We therefore need to understand
+193
+00:18:04.680 --> 00:18:11.920 line:94%,end position:50%,center size:90% align:center
+When we increase the new factories, require the worker share and decrease the old factories by the same amount.
 
-274
-00:17:59.940 --> 00:18:02.160 line:94%,end position:50%,center size:90% align:center
-the derivative of Wn(t).
+194
+00:18:12.660 --> 00:18:18.999 line:94%,end position:50%,center size:90% align:center
+To study this cost derivative, we return to wages using Kantorovich duality.
 
-275
-00:18:02.580 --> 00:18:05.700 line:94%,end position:50%,center size:90% align:center
-How does the optimal cost respond? When we
-increase
+195
+00:18:18.999 --> 00:18:23.740 line:94%,end position:50%,center size:90% align:center
+Let w be the wage vector and let m be the staffing vector.
 
-276
-00:18:05.700 --> 00:18:11.920 line:94%,end position:50%,center size:90% align:center
-the new factories, require the worker share and
-decrease the old factories by the same amount.
+196
+00:18:24.500 --> 00:18:31.740 line:94%,end position:50%,center size:90% align:center
+In both vector, the new factory comes first, the old factory second, followed by the other n minus one factories.
 
-277
-00:18:12.660 --> 00:18:17.220 line:94%,end position:50%,center size:90% align:center
-To study this cost derivative, we return to
-wages using
-
-278
-00:18:17.220 --> 00:18:23.320 line:94%,end position:50%,center size:90% align:center
-Kantorovich duality. Let w be the wage vector
-and let m be the staffing
-
-279
-00:18:23.320 --> 00:18:23.740 line:94%,end position:50%,center size:90% align:center
-vector.
-
-280
-00:18:24.500 --> 00:18:29.720 line:94%,end position:50%,center size:90% align:center
-In both vector, the new factory comes first, the
-old factory second, followed
-
-281
-00:18:29.720 --> 00:18:31.740 line:94%,end position:50%,center size:90% align:center
-by the other n minus one factories.
-
-282
+197
 00:18:32.920 --> 00:18:37.500 line:94%,end position:50%,center size:90% align:center
-The staffing share changes as shown, and the
-optimal wages adjust.
+The staffing share changes as shown, and the optimal wages adjust.
 
-283
-00:18:38.060 --> 00:18:41.400 line:94%,end position:50%,center size:90% align:center
-Kantorovich duality connects these two vectors
-to the
+198
+00:18:38.060 --> 00:18:42.480 line:94%,end position:50%,center size:90% align:center
+Kantorovich duality connects these two vectors to the transportation cost.
 
-284
-00:18:41.400 --> 00:18:42.480 line:94%,end position:50%,center size:90% align:center
-transportation cost.
+199
+00:18:43.220 --> 00:18:48.920 line:94%,end position:50%,center size:90% align:center
+It let us calculate how change in staffing affect the wages and the optimal cost.
 
-285
-00:18:43.220 --> 00:18:47.440 line:94%,end position:50%,center size:90% align:center
-It let us calculate how change in staffing
-affect the wages
+200
+00:18:49.540 --> 00:18:56.100 line:94%,end position:50%,center size:90% align:center
+Recall that we want to understand how the optimal cost WN changes as the staffing vector m changes.
 
-286
-00:18:47.440 --> 00:18:48.920 line:94%,end position:50%,center size:90% align:center
-and the optimal cost.
-
-287
-00:18:49.540 --> 00:18:53.760 line:94%,end position:50%,center size:90% align:center
-Recall that we want to understand how the
-optimal cost WN
-
-288
-00:18:53.760 --> 00:18:56.100 line:94%,end position:50%,center size:90% align:center
-changes as the staffing vector m changes.
-
-289
+201
 00:18:56.840 --> 00:19:01.900 line:94%,end position:50%,center size:90% align:center
-Kantorovich duality lets us study this through
-the optimal wage vector w?
+Kantorovich duality lets us study this through the optimal wage vector w?
 
-290
+202
 00:19:02.200 --> 00:19:06.700 line:94%,end position:50%,center size:90% align:center
-Staffing changes the wage, which determines the
-change in cost.
+Staffing changes the wage, which determines the change in cost.
 
-291
-00:19:07.240 --> 00:19:10.460 line:94%,end position:50%,center size:90% align:center
-Since the staffing changes along the
-interpolation are known,
+203
+00:19:07.240 --> 00:19:17.480 line:94%,end position:50%,center size:90% align:center
+Since the staffing changes along the interpolation are known, the derivative matrix we need to understand is h inverse, which is dw over dm.
 
-292
-00:19:10.980 --> 00:19:17.480 line:94%,end position:50%,center size:90% align:center
-the derivative matrix we need to understand is h
-inverse, which is dw over dm.
+204
+00:19:17.480 --> 00:19:24.265 line:94%,end position:50%,center size:90% align:center
+We have a more direct understanding of what H equals to Dm over Dw is.
 
-293
-00:19:17.480 --> 00:19:22.580 line:94%,end position:50%,center size:90% align:center
-We have a more direct understanding of what H
-equals
+205
+00:19:24.265 --> 00:19:32.200 line:94%,end position:50%,center size:90% align:center
+The staffing response to wages. The next slide shows why. Why is H easier to understand?
 
-294
-00:19:22.580 --> 00:19:27.260 line:94%,end position:50%,center size:90% align:center
-to Dm over Dw is. The staffing response to
-wages.
-
-295
-00:19:28.120 --> 00:19:29.620 line:94%,end position:50%,center size:90% align:center
-The next slide shows why.
-
-296
-00:19:30.500 --> 00:19:32.200 line:94%,end position:50%,center size:90% align:center
-Why is H easier to understand?
-
-297
+206
 00:19:32.940 --> 00:19:35.620 line:94%,end position:50%,center size:90% align:center
 Change one wage and watch how staffing responds.
 
-298
+207
 00:19:36.640 --> 00:19:40.560 line:94%,end position:50%,center size:90% align:center
-Keep every other wage fixed and increase the
-green factory&#x27;s wage.
+Keep every other wage fixed and increase the green factory's wage.
 
-299
+208
 00:19:41.620 --> 00:19:45.540 line:94%,end position:50%,center size:90% align:center
-Workers near its boundary now prefer it, so the
-region expands.
+Workers near its boundary now prefer it, so the region expands.
 
-300
-00:19:46.220 --> 00:19:51.120 line:94%,end position:50%,center size:90% align:center
-Since workers are uniformly distributed, the
-region&#x27;s area is exactly
+209
+00:19:46.220 --> 00:19:52.300 line:94%,end position:50%,center size:90% align:center
+Since workers are uniformly distributed, the region's area is exactly the worker's share.
 
-301
-00:19:51.120 --> 00:19:52.300 line:94%,end position:50%,center size:90% align:center
-the worker&#x27;s share.
-
-302
+210
 00:19:52.920 --> 00:19:58.180 line:94%,end position:50%,center size:90% align:center
-Its own staffing increases, while factories
-sharing a boundary lose workers.
+Its own staffing increases, while factories sharing a boundary lose workers.
 
-303
-00:19:58.840 --> 00:20:03.600 line:94%,end position:50%,center size:90% align:center
-These responses form the corresponding column of
-H: a positive entry
+211
+00:19:58.840 --> 00:20:06.960 line:94%,end position:50%,center size:90% align:center
+These responses form the corresponding column of H: a positive entry on the green factory and negative entries for its neighbors.
 
-304
-00:20:03.600 --> 00:20:06.960 line:94%,end position:50%,center size:90% align:center
-on the green factory and negative entries for
-its neighbors.
-
-305
+212
 00:20:07.860 --> 00:20:12.640 line:94%,end position:50%,center size:90% align:center
-This slide is for viewers familiar with matrices
-and Markov processes.
+This slide is for viewers familiar with matrices and Markov processes.
 
-306
+213
 00:20:12.640 --> 00:20:17.960 line:94%,end position:50%,center size:90% align:center
-We want to understand H inverse, but have a
-direct information about H.
+We want to understand H inverse, but have a direct information about H.
 
-307
+214
 00:20:18.360 --> 00:20:21.220 line:94%,end position:50%,center size:90% align:center
 This integral representation connects the two.
 
-308
+215
 00:20:21.920 --> 00:20:25.680 line:94%,end position:50%,center size:90% align:center
-We now think of negative H as the generator of a
-random walk.
+We now think of negative H as the generator of a random walk.
 
-309
-00:20:26.380 --> 00:20:30.800 line:94%,end position:50%,center size:90% align:center
-For a fixed partition, the matrix e to the power
-of negative SH
+216
+00:20:26.380 --> 00:20:35.920 line:94%,end position:50%,center size:90% align:center
+For a fixed partition, the matrix e to the power of negative SH describes a continuous-time random walk between neighboring factory region.
 
-310
-00:20:30.800 --> 00:20:35.920 line:94%,end position:50%,center size:90% align:center
-describes a continuous-time random walk between
-neighboring factory region.
-
-311
+217
 00:20:36.620 --> 00:20:40.960 line:94%,end position:50%,center size:90% align:center
-The region matters because the jump rate depends
-on the shared boundary size.
+The region matters because the jump rate depends on the shared boundary size.
 
-312
+218
 00:20:42.020 --> 00:20:46.500 line:94%,end position:50%,center size:90% align:center
-We can therefore study the inverse through the
-behavior of this walk.
+We can therefore study the inverse through the behavior of this walk.
 
-313
-00:20:47.120 --> 00:20:52.320 line:94%,end position:50%,center size:90% align:center
-To sum up, we have connected the effect of
-replacing one factory to
+219
+00:20:47.120 --> 00:20:55.260 line:94%,end position:50%,center size:90% align:center
+To sum up, we have connected the effect of replacing one factory to the behavior of random walk on the factory regions.
 
-314
-00:20:52.320 --> 00:20:55.260 line:94%,end position:50%,center size:90% align:center
-the behavior of random walk on the factory
-regions.
+220
+00:20:55.840 --> 00:21:01.720 line:94%,end position:50%,center size:90% align:center
+The connection passes through how the optimal wages respond when we perturb the staffing requirement.
 
-315
-00:20:55.840 --> 00:21:00.180 line:94%,end position:50%,center size:90% align:center
-The connection passes through how the optimal
-wages respond when we
+221
+00:21:02.680 --> 00:21:08.709 line:94%,end position:50%,center size:90% align:center
+This lets us bring the tools from Markov-process theory to control the change in optimal optimal cost
 
-316
-00:21:00.180 --> 00:21:01.720 line:94%,end position:50%,center size:90% align:center
-perturb the staffing requirement.
+222
+00:21:08.709 --> 00:21:13.000 line:94%,end position:50%,center size:90% align:center
+and prove the fluctuation result for Wn in dimensions 5 and higher.
 
-317
-00:21:02.680 --> 00:21:06.640 line:94%,end position:50%,center size:90% align:center
-This lets us bring the tools from Markov-process
-theory to control
-
-318
-00:21:06.640 --> 00:21:11.900 line:94%,end position:50%,center size:90% align:center
-the change in optimal optimal cost and prove the
-fluctuation result for Wn in dimensions
-
-319
-00:21:11.900 --> 00:21:13.000 line:94%,end position:50%,center size:90% align:center
-5 and higher.
-
-320
+223
 00:21:14.740 --> 00:21:18.680 line:94%,end position:50%,center size:90% align:center
-This video is meant to convey intuition, not
-rigorous proofs.
+This video is meant to convey intuition, not rigorous proofs.
 
-321
-00:21:19.420 --> 00:21:20.820 line:94%,end position:50%,center size:90% align:center
-The explanation are deliberately
+224
+00:21:19.420 --> 00:21:26.100 line:94%,end position:50%,center size:90% align:center
+The explanation are deliberately informal, and some statements are even incorrect without additional explanation.
 
-322
-00:21:21.400 --> 00:21:26.100 line:94%,end position:50%,center size:90% align:center
-informal, and some statements are even incorrect
-without additional explanation.
+225
+00:21:26.980 --> 00:21:34.580 line:94%,end position:50%,center size:90% align:center
+For example, H is not invertible on the full space, so our notation H inverse needs a precise interpretation.
 
-323
-00:21:26.980 --> 00:21:32.560 line:94%,end position:50%,center size:90% align:center
-For example, H is not invertible on the full
-space, so our notation H inverse
+226
+00:21:34.580 --> 00:21:41.320 line:94%,end position:50%,center size:90% align:center
+For a rigorous account of these ideas, I encourage you to read the proof strategy section in the two papers.
 
-324
-00:21:32.560 --> 00:21:34.580 line:94%,end position:50%,center size:90% align:center
-needs a precise interpretation
-
-325
-00:21:34.580 --> 00:21:38.980 line:94%,end position:50%,center size:90% align:center
-For a rigorous account of these ideas, I
-encourage you to read the
-
-326
-00:21:38.980 --> 00:21:41.320 line:94%,end position:50%,center size:90% align:center
-proof strategy section in the two papers.
-
-327
+227
 00:21:42.060 --> 00:21:45.500 line:94%,end position:50%,center size:90% align:center
-If you would like to go deeper, the full proofs
-are in the papers.
-
+If you would like to go deeper, the full proofs are in the papers.
