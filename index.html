@@ -227,10 +227,19 @@
         .publication-video {
             display: block;
             width: 100%;
+            max-width: 420px;
             aspect-ratio: 16 / 9;
             margin-top: 16px;
             border-radius: 10px;
             background: #0f172a;
+        }
+
+        .publication-video:fullscreen {
+            max-width: none;
+            height: 100%;
+            margin: 0;
+            border-radius: 0;
+            object-fit: contain;
         }
 
         footer {
