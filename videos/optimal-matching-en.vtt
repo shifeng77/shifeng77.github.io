@@ -1,0 +1,1514 @@
+WEBVTT
+
+1
+00:00:01.870 --> 00:00:06.170
+Hi, I&#x27;m Shi Feng, a PhD student at Cornell
+University.
+
+2
+00:00:07.050 --> 00:00:10.450
+In this video, we will talk about the optimal
+matching problem.
+
+3
+00:00:13.530 --> 00:00:17.670
+In particular, I want to share the main result
+and ideas from these
+
+4
+00:00:17.670 --> 00:00:22.630
+two papers, both studying how the optimal
+matching cost fluctuates
+
+5
+00:00:22.630 --> 00:00:24.390
+when the points are random.
+
+6
+00:00:25.250 --> 00:00:28.370
+They address different dimensions using very
+different methods.
+
+7
+00:00:29.090 --> 00:00:34.430
+The first, written with Gilles Mordant, treats
+dimensions two, three and 4.
+
+8
+00:00:34.950 --> 00:00:37.710
+The second treats dimensions 5 and higher.
+
+9
+00:00:40.140 --> 00:00:42.920
+Here is the setup of the optimal matching
+problem.
+
+10
+00:00:43.640 --> 00:00:45.880
+Imagine a company with several factories.
+
+11
+00:00:46.940 --> 00:00:49.720
+Their locations are chosen randomly in this
+square.
+
+12
+00:00:50.320 --> 00:00:54.540
+Workers live throughout the square, spread
+evenly across it.
+
+13
+00:00:55.280 --> 00:00:57.240
+We treat them as a continuous population.
+
+14
+00:00:58.280 --> 00:01:03.950
+The question is simple. How should we assign
+workers to factories?
+
+15
+00:01:04.540 --> 00:01:07.920
+To see what an assignment means, look at this
+worker&#x27;s commute.
+
+16
+00:01:08.760 --> 00:01:11.820
+An assignment gives a destination to every
+worker.
+
+17
+00:01:12.480 --> 00:01:16.100
+This divides the square into regions, one for
+each factory.
+
+18
+00:01:16.820 --> 00:01:17.860
+We call this a partition.
+
+19
+00:01:19.240 --> 00:01:23.100
+The colored regions collect the workers who go
+to the same factory.
+
+20
+00:01:23.700 --> 00:01:26.580
+Everyone in the green regions goes to the green
+factory.
+
+21
+00:01:27.820 --> 00:01:30.340
+But not every assignment is allowed.
+
+22
+00:01:31.120 --> 00:01:32.660
+There is a staffing requirement.
+
+23
+00:01:32.660 --> 00:01:38.280
+Every factory needs the same share of workers.
+With six factories,
+
+24
+00:01:38.280 --> 00:01:39.760
+each get one
+
+25
+00:01:39.760 --> 00:01:45.200
+sixth of the population because the workers are
+spread evenly their regions
+
+26
+00:01:45.200 --> 00:01:50.400
+must have equal area for example if every worker
+goes to
+
+27
+00:01:50.400 --> 00:01:52.600
+the nearest factory some
+
+28
+00:01:52.600 --> 00:01:58.060
+factories may receive more workers and others
+fewer this would not meet our
+
+29
+00:01:58.060 --> 00:01:59.360
+equal staffing requirement.
+
+30
+00:02:02.520 --> 00:02:06.160
+Now let&#x27;s define the transportation cost we
+want to optimize.
+
+31
+00:02:07.460 --> 00:02:11.840
+If a worker lives at x and travel to the factory
+at xi,
+
+32
+00:02:12.240 --> 00:02:15.720
+one natural cost is the distance dx xi.
+
+33
+00:02:16.020 --> 00:02:19.180
+This is a well-established model but the
+corresponding
+
+34
+00:02:19.180 --> 00:02:21.600
+fluctuation problem is still open.
+
+35
+00:02:22.320 --> 00:02:27.560
+In this project, we instead use the squared
+distance dx xi squared.
+
+36
+00:02:27.560 --> 00:02:29.940
+This is also a reasonable model.
+
+37
+00:02:30.580 --> 00:02:35.680
+A ten-hour flight can feel more than twice as
+exhausting as a five-hour flight.
+
+38
+00:02:36.860 --> 00:02:40.720
+With this cost in place, we can now choose the
+best assignment.
+
+39
+00:02:41.580 --> 00:02:44.640
+After fixing the randomly chosen factory
+locations,
+
+40
+00:02:45.720 --> 00:02:49.200
+we can partition the square into regions, one
+for each factory.
+
+41
+00:02:49.580 --> 00:02:54.920
+We want the smallest total transportation cost
+while keeping the worker share equal.
+
+42
+00:02:54.920 --> 00:02:59.400
+Finding the best assignment is the optimal
+matching problem.
+
+43
+00:03:00.720 --> 00:03:04.760
+With squared distance cost, an optimal
+assignment exists.
+
+44
+00:03:05.540 --> 00:03:08.220
+It divides the square into convex polygons.
+
+45
+00:03:08.780 --> 00:03:12.620
+This simple geometry is one advantage of squared
+distance cost.
+
+46
+00:03:14.040 --> 00:03:17.140
+The same problem can be posed in higher
+dimensions.
+
+47
+00:03:18.020 --> 00:03:21.580
+In dimension 3, the unit square becomes a unit
+cube.
+
+48
+00:03:22.200 --> 00:03:25.660
+Here, 3 factories sits on its front face.
+
+49
+00:03:26.620 --> 00:03:29.000
+Each colored region contains the worker
+
+50
+00:03:29.000 --> 00:03:32.640
+assigned to one factory and extends through the
+cube.
+
+51
+00:03:33.520 --> 00:03:36.080
+Each occupies one third of its volume.
+
+52
+00:03:37.040 --> 00:03:40.980
+These regions are convex polytopes, the
+3-dimensional counterparts
+
+53
+00:03:40.980 --> 00:03:44.180
+of convex polygons. Higher dimensional
+
+54
+00:03:44.180 --> 00:03:48.840
+geometry is difficult to visualize, especially
+beyond dimension 3.
+
+55
+00:03:49.320 --> 00:03:50.800
+So we will use 2-dimensional
+
+56
+00:03:50.800 --> 00:03:54.520
+drawings with convex polygons to illustrate the
+ideas.
+
+57
+00:03:55.940 --> 00:03:57.220
+For the rest of the story,
+
+58
+00:03:57.660 --> 00:04:01.180
+imagine that opposite edges of the square are
+joined.
+
+59
+00:04:01.960 --> 00:04:03.420
+Leave through the left edge
+
+60
+00:04:03.420 --> 00:04:05.200
+and you return through the right.
+
+61
+00:04:06.200 --> 00:04:08.680
+This gives us a world without a boundary.
+
+62
+00:04:09.440 --> 00:04:15.620
+The two-dimensional torus, called T2, with side
+length one in each direction.
+
+63
+00:04:16.120 --> 00:04:20.860
+This Distances use the shortest route, including
+routes that wrap around.
+
+64
+00:04:22.120 --> 00:04:26.660
+In dimension three, we join each face of the
+unit cube to its opposite
+
+65
+00:04:26.660 --> 00:04:31.120
+side, leaving through one face brings you back
+through the opposite side.
+
+66
+00:04:31.940 --> 00:04:34.400
+This is the 3-dimensional torus T3.
+
+67
+00:04:35.060 --> 00:04:39.680
+In D dimensions, we make the same identification
+on the unit cube
+
+68
+00:04:39.680 --> 00:04:42.340
+to obtain Td, with side length
+
+69
+00:04:42.340 --> 00:04:43.660
+1 in each direction.
+
+70
+00:04:43.660 --> 00:04:48.920
+We work on the torus because it removes boundary
+effects and
+
+71
+00:04:48.920 --> 00:04:52.200
+gives us access to additional mathematical
+tools.
+
+72
+00:04:52.940 --> 00:04:55.920
+We won&#x27;t discuss these advantages in
+details here.
+
+73
+00:04:56.420 --> 00:04:58.860
+The paper explains how they enter the proofs.
+
+74
+00:05:01.240 --> 00:05:03.480
+We now have a concrete model and a question.
+
+75
+00:05:04.560 --> 00:05:05.780
+Let&#x27;s define everything clearly.
+
+76
+00:05:06.740 --> 00:05:12.540
+Write Wn for the optimal matching cost of n
+factories at X1 to Xn in TD.
+
+77
+00:05:12.540 --> 00:05:18.060
+For each factory xi, let ai be its assigned
+worker region.
+
+78
+00:05:18.720 --> 00:05:20.720
+This region partitioned the torus.
+
+79
+00:05:21.280 --> 00:05:24.780
+The uniform worker measure mu has total mass 1.
+
+80
+00:05:25.380 --> 00:05:29.380
+So equal staffing means mu of Ai equals one over
+n.
+
+81
+00:05:30.240 --> 00:05:35.460
+With dx xi denoting the torus distance, the
+integral adds the squared
+
+82
+00:05:35.460 --> 00:05:38.480
+distance transportation cost across ai.
+
+83
+00:05:38.480 --> 00:05:43.900
+We sum over all factories, then minimize over
+all partitions satisfying
+
+84
+00:05:43.900 --> 00:05:45.680
+this equal staffing requirement.
+
+85
+00:05:48.300 --> 00:05:53.820
+Because the factory locations are random, the
+matching cost WN is also random.
+
+86
+00:05:54.580 --> 00:05:57.800
+Now let the number of factories n become large.
+
+87
+00:05:59.320 --> 00:06:02.280
+How does the average transport cost depend on n?
+
+88
+00:06:03.000 --> 00:06:06.060
+How large is the variation measured by the
+variance?
+
+89
+00:06:06.060 --> 00:06:11.260
+And after subtracting the average and rescaling
+the fluctuations, do
+
+90
+00:06:11.260 --> 00:06:13.340
+we see a fixed limiting distribution?
+
+91
+00:06:14.480 --> 00:06:17.140
+These are the three questions we want to answer.
+
+92
+00:06:18.180 --> 00:06:22.180
+Let&#x27;s first try to understand the
+expectation of the matching cost.
+
+93
+00:06:22.740 --> 00:06:26.720
+More factories mean shorter transportation
+distances, so how quickly
+
+94
+00:06:26.720 --> 00:06:29.620
+does the expectation decrease as n grows?
+
+95
+00:06:29.620 --> 00:06:35.240
+Suppose we temporarily ignore the staffing
+requirement that every factory needs
+
+96
+00:06:35.240 --> 00:06:37.180
+to receive an equal share of workers.
+
+97
+00:06:38.000 --> 00:06:42.780
+Each worker can then go to the nearest factory.
+On the d-dimensional torus,
+
+98
+00:06:43.320 --> 00:06:47.120
+The typical distance to that factory is of order
+n to the power of
+
+99
+00:06:47.120 --> 00:06:53.060
+negative 1 over d. Since our cost is squared
+distance, this gives a first guess that
+
+100
+00:06:53.060 --> 00:06:57.940
+expectation of wn is of order n to the power of
+negative 2 over d.
+
+101
+00:06:57.940 --> 00:07:02.200
+This nearest-factory guess is incorrect in
+dimension two.
+
+102
+00:07:02.820 --> 00:07:05.380
+The blue arrow points to the nearest factory.
+
+103
+00:07:05.840 --> 00:07:10.660
+The orange arrow points to the factory worker is
+actually assigned to, which may be
+
+104
+00:07:10.660 --> 00:07:14.500
+farther away because every factory must receive
+an equal share of workers.
+
+105
+00:07:15.260 --> 00:07:20.380
+In dimension 2, a typical worker needs to travel
+a distance of order square root of
+
+106
+00:07:20.380 --> 00:07:25.120
+log n over square root of n, instead of one over
+the square root of n.
+
+107
+00:07:25.740 --> 00:07:29.240
+For dimensions three and larger, both distance
+scales
+
+108
+00:07:29.240 --> 00:07:31.840
+are n to the power of negative 1 over d.
+
+109
+00:07:32.200 --> 00:07:35.480
+So the nearest-factory guess has the correct
+order.
+
+110
+00:07:36.360 --> 00:07:40.960
+Beyond the unexpected log n factor, there is
+another surprise.
+
+111
+00:07:41.700 --> 00:07:43.140
+In dimension 2, the leading
+
+112
+00:07:43.140 --> 00:07:45.800
+constant is exactly 1 over 4 pi.
+
+113
+00:07:46.600 --> 00:07:51.120
+Now that we understand the expectation,
+let&#x27;s look at the fluctuations.
+
+114
+00:07:52.060 --> 00:07:55.860
+Each picture has six factories, but their
+locations differ.
+
+115
+00:07:56.580 --> 00:07:59.360
+The workers are spread uniformly in all three
+pictures.
+
+116
+00:07:59.880 --> 00:08:02.880
+On the left, the factories are clustered, so
+
+117
+00:08:02.880 --> 00:08:06.260
+workers must travel farther and the matching
+cost is high.
+
+118
+00:08:06.960 --> 00:08:08.120
+In the middle, the factories
+
+119
+00:08:08.120 --> 00:08:11.600
+are placed randomly, giving an intermediate
+cost.
+
+120
+00:08:12.340 --> 00:08:14.780
+On the right, they are more evenly spread,
+
+121
+00:08:14.780 --> 00:08:16.400
+giving a lower cost.
+
+122
+00:08:18.200 --> 00:08:21.500
+The numbers show the computed optimal cost for
+this
+
+123
+00:08:21.500 --> 00:08:22.440
+particular pictures.
+
+124
+00:08:23.240 --> 00:08:27.560
+When the factory locations are random, how large
+is the variance of Wn?
+
+125
+00:08:28.540 --> 00:08:32.620
+After centering and rescaling, do its
+fluctuation approach a
+
+126
+00:08:32.620 --> 00:08:33.460
+limiting distribution?
+
+127
+00:08:34.600 --> 00:08:37.780
+Our two papers answers these two questions and
+the reveal
+
+128
+00:08:37.780 --> 00:08:41.820
+unexpected behavior in both the variance and the
+limiting distribution.
+
+129
+00:08:41.820 --> 00:08:45.940
+In dimensions two and three, the variance has
+the same scale.
+
+130
+00:08:46.600 --> 00:08:49.680
+In dimension four, an extra log factor appears.
+
+131
+00:08:50.600 --> 00:08:52.240
+In dimensions 5 and higher,
+
+132
+00:08:52.580 --> 00:08:55.000
+the variance grows in a more regular way.
+
+133
+00:08:55.760 --> 00:08:58.940
+The limiting distribution also has an
+interesting transition.
+
+134
+00:08:59.640 --> 00:09:05.080
+It is non-Gaussian in dimensions two and three,
+but Gaussian from dimension 4 and onward.
+
+135
+00:09:05.860 --> 00:09:11.860
+In these unusual low-dimensional cases, we can
+also identify the exact leading constant
+
+136
+00:09:11.860 --> 00:09:12.800
+in the variance.
+
+137
+00:09:13.540 --> 00:09:18.260
+In dimension 2 and 3, the constants are given by
+explicit lattice sum.
+
+138
+00:09:18.860 --> 00:09:22.700
+In dimension 4, the constant has a simple closed
+form.
+
+139
+00:09:23.180 --> 00:09:24.700
+Interestingly, all three
+
+140
+00:09:24.700 --> 00:09:29.960
+constants also involve pi, just like the
+expectation constant we saw earlier.
+
+141
+00:09:30.760 --> 00:09:33.980
+These results show two different critical
+dimensions.
+
+142
+00:09:34.820 --> 00:09:39.240
+Dimension 2 is special for expectation because
+of the extra log n factor.
+
+143
+00:09:39.960 --> 00:09:41.960
+Dimension 4 is special for fluctuations.
+
+144
+00:09:42.860 --> 00:09:46.420
+Both the variance scale and the limiting
+distribution change there.
+
+145
+00:09:47.160 --> 00:09:49.400
+These results are both surprising and precise.
+
+146
+00:09:50.360 --> 00:09:52.040
+How can we obtain such a detailed
+
+147
+00:09:52.040 --> 00:09:54.300
+understanding of these unusual fluctuations?
+
+148
+00:09:55.820 --> 00:09:59.860
+Explicit limiting distributions are difficult to
+obtain in random
+
+149
+00:09:59.860 --> 00:10:01.960
+optimization problems, especially
+
+150
+00:10:01.960 --> 00:10:03.160
+non-Gaussian limits.
+
+151
+00:10:04.000 --> 00:10:07.540
+Classical examples where such limiting
+distributions are known include
+
+152
+00:10:07.540 --> 00:10:10.280
+the exactly solvable models in the KPZ family.
+
+153
+00:10:10.920 --> 00:10:13.880
+We won&#x27;t explain these models here, but
+such
+
+154
+00:10:13.880 --> 00:10:17.400
+precise results are possible because the exact
+formula are available.
+
+155
+00:10:17.960 --> 00:10:19.680
+For example, the formula
+
+156
+00:10:19.680 --> 00:10:25.680
+shown here expresses the cumulative distribution
+function as a Fredholm determinant. For optimal
+
+157
+00:10:25.680 --> 00:10:27.420
+matching, the reason is different.
+
+158
+00:10:28.100 --> 00:10:31.340
+Kantorovich duality is the main tool, and
+it&#x27;s the starting
+
+159
+00:10:31.340 --> 00:10:32.840
+point of the whole argument.
+
+160
+00:10:34.280 --> 00:10:37.640
+There are many ways to understand Kantorovich
+duality.
+
+161
+00:10:38.020 --> 00:10:42.360
+Here, I will use an interpretation that I find
+intuitive for this
+
+162
+00:10:42.360 --> 00:10:45.480
+problem, although it&#x27;s not the usual
+textbook presentation.
+
+163
+00:10:46.700 --> 00:10:48.340
+Recall our original problem.
+
+164
+00:10:49.180 --> 00:10:53.000
+The factories are placed randomly, and we divide
+the workers into
+
+165
+00:10:53.000 --> 00:10:55.260
+regions like this, assigning
+
+166
+00:10:55.260 --> 00:10:56.720
+each region to one factory.
+
+167
+00:10:56.720 --> 00:11:01.880
+Each factory must receive equal share of worker,
+and we want to minimize
+
+168
+00:11:01.880 --> 00:11:04.900
+the total squared distance transportation cost.
+
+169
+00:11:05.840 --> 00:11:10.640
+Now, instead of assigning each worker to a
+factory, we let the workers
+
+170
+00:11:10.640 --> 00:11:11.700
+choose for themselves.
+
+171
+00:11:12.780 --> 00:11:16.240
+What we do is assign different wages to
+different factories.
+
+172
+00:11:16.240 --> 00:11:21.300
+If factory xi offers wage wi, a worker at
+
+173
+00:11:21.300 --> 00:11:25.840
+x receives a net wage of wi minus dx xi square.
+
+174
+00:11:26.540 --> 00:11:29.740
+The wage minus the squared distance
+transportation cost.
+
+175
+00:11:30.520 --> 00:11:33.400
+The worker chooses the factory where this is the
+largest.
+
+176
+00:11:34.300 --> 00:11:37.840
+A higher wage can therefore make a farther
+factory more attractive.
+
+177
+00:11:38.560 --> 00:11:41.780
+Arbitrary wages usually do not give equal
+staffing.
+
+178
+00:11:42.580 --> 00:11:46.460
+One factory may attract too many workers.
+Another too few.
+
+179
+00:11:46.980 --> 00:11:50.540
+Changing wages moves the boundary of the worker
+regions.
+
+180
+00:11:51.280 --> 00:11:53.340
+Keeping the other wages fixed,
+
+181
+00:11:53.960 --> 00:11:58.800
+increasing a factory&#x27;s wage attracts more
+workers and expands its region.
+
+182
+00:11:59.420 --> 00:12:01.860
+Decreasing its wage has the opposite effect.
+
+183
+00:12:02.620 --> 00:12:06.260
+Fewer workers choose that factory and its region
+shrinks.
+
+184
+00:12:06.820 --> 00:12:12.060
+Wage changes let us rebalance staffing without
+assigning each worker individually.
+
+185
+00:12:13.300 --> 00:12:17.520
+Kantorovich duality tells us that we can choose
+wages so that
+
+186
+00:12:17.520 --> 00:12:23.380
+every factory receives the equal share of the
+workers, and their choice minimizes the total
+
+187
+00:12:23.380 --> 00:12:24.560
+transportation cost.
+
+188
+00:12:25.180 --> 00:12:28.880
+This turns the matching problem into a search
+for balancing wages.
+
+189
+00:12:30.000 --> 00:12:34.620
+Economically, we can think of this as market
+adjusting towards the
+
+190
+00:12:34.620 --> 00:12:40.820
+optimal assignment. Suppose every factory starts
+with an arbitrary wage, some attract
+
+191
+00:12:40.820 --> 00:12:42.140
+more than their required
+
+192
+00:12:42.140 --> 00:12:47.180
+share of workers, while others attract fewer. An
+overstaffed
+
+193
+00:12:47.180 --> 00:12:50.120
+factory lowers its wage; an understaffed
+
+194
+00:12:50.120 --> 00:12:51.740
+factory raise its wage.
+
+195
+00:12:52.260 --> 00:12:57.000
+With an appropriate gradual adjustment rule,
+this process converges
+
+196
+00:12:57.000 --> 00:12:58.240
+to balanced staffing.
+
+197
+00:12:58.960 --> 00:13:02.820
+At that point, the worker choice gives an
+optimal assignment.
+
+198
+00:13:03.880 --> 00:13:08.380
+Mathematically, Kantorovich duality says there
+is a wage vector w
+
+199
+00:13:08.380 --> 00:13:14.620
+star, whose induced partition satisfies the
+staffing requirement, and for which this
+equality
+
+200
+00:13:14.620 --> 00:13:20.760
+holds, the total worker population has mass one,
+and each factory hires a share
+
+201
+00:13:20.760 --> 00:13:25.420
+one over n. So the first term is the total wage
+paid by the company.
+
+202
+00:13:25.860 --> 00:13:30.280
+For a worker at X, the maximum is the best net
+wage available.
+
+203
+00:13:30.280 --> 00:13:36.120
+The factory wage minus the squared distance
+transportation cost, integrating
+
+204
+00:13:36.120 --> 00:13:39.500
+adds these best net wage over all workers.
+
+205
+00:13:40.400 --> 00:13:45.620
+The difference between the company&#x27;s total
+wage and the workers&#x27; total net wage is the
+
+206
+00:13:45.620 --> 00:13:48.240
+transportation cost of this optimal partition.
+
+207
+00:13:49.160 --> 00:13:53.840
+We now return to the fluctuation question in
+dimension 2, 3 and 4.
+
+208
+00:13:54.380 --> 00:13:59.560
+Starting from Kantorovich duality, we use what
+is called the linearization
+
+209
+00:13:59.900 --> 00:14:02.840
+optimal transport. We won&#x27;t explain this
+step here.
+
+210
+00:14:03.480 --> 00:14:06.420
+This gives an approximation that decompose
+
+211
+00:14:06.420 --> 00:14:11.220
+the matching cost into a mean zero random part
+shown in blue and a
+
+212
+00:14:11.220 --> 00:14:13.380
+deterministic part shown in orange.
+
+213
+00:14:14.200 --> 00:14:18.280
+Here, K is a cutoff controlling how much detail
+we retain.
+
+214
+00:14:19.080 --> 00:14:21.100
+Both the blue and orange term have
+
+215
+00:14:21.100 --> 00:14:27.420
+simple but non-obvious formula, which are given
+in our low-dimensional paper. The blue part
+
+216
+00:14:27.420 --> 00:14:31.620
+controls the fluctuation, while the orange part
+controls the expectation.
+
+217
+00:14:32.140 --> 00:14:35.600
+First, consider the expectation in dimension 2.
+
+218
+00:14:36.100 --> 00:14:37.220
+For the leading expectation,
+
+219
+00:14:37.900 --> 00:14:40.940
+we take the cutoff k equals to square root of n.
+
+220
+00:14:41.280 --> 00:14:43.480
+This cutoff is motivated by natural
+
+221
+00:14:43.480 --> 00:14:46.400
+scale of smoothing, which we won&#x27;t discuss
+here.
+
+222
+00:14:46.960 --> 00:14:48.840
+Since the blue term has mean 0,
+
+223
+00:14:49.240 --> 00:14:54.340
+the leading-order term of the expectation is
+approximated by the orange term.
+
+224
+00:14:54.340 --> 00:14:59.260
+This is indeed correct, and gives the leading
+constant after proper scaling.
+
+225
+00:14:59.860 --> 00:15:03.540
+Understanding the fluctuation is the main object
+of our paper.
+
+226
+00:15:03.960 --> 00:15:08.300
+We proved that the blue term captures the
+fluctuation of the matching cost accurately
+
+227
+00:15:08.300 --> 00:15:12.020
+enough to recover both the variance and the
+limiting distribution.
+
+228
+00:15:12.960 --> 00:15:17.420
+The variance of WN is therefore asymptotic to
+that of the blue term.
+
+229
+00:15:18.100 --> 00:15:22.000
+After centering and dividing by their standard
+deviation, they have
+
+230
+00:15:22.000 --> 00:15:27.540
+the same limiting law. Non-Gaussian in
+dimensions two and three, and Gaussian in
+dimension four.
+
+231
+00:15:28.120 --> 00:15:32.100
+Why doesn&#x27;t this approximation work in
+dimensions five and higher?
+
+232
+00:15:32.700 --> 00:15:34.380
+let&#x27;s look at those two graphs.
+
+233
+00:15:34.960 --> 00:15:39.000
+Each point along the horizontal axis represents
+a different factory
+
+234
+00:15:39.000 --> 00:15:41.380
+configuration ordered by matching cost.
+
+235
+00:15:41.780 --> 00:15:45.880
+The dark curve shows the matching cost
+fluctuation, and the blue curve
+
+236
+00:15:45.880 --> 00:15:47.640
+shows the simpler approximation.
+
+237
+00:15:48.380 --> 00:15:51.480
+Their values spread out along the vertical axis.
+
+238
+00:15:52.520 --> 00:15:54.220
+The shape beside it represents
+
+239
+00:15:54.220 --> 00:16:00.400
+their distribution. In dimensions 2, 3, and 4,
+the curves are close enough to recover both
+
+240
+00:16:00.400 --> 00:16:02.120
+the variance and limiting distribution.
+
+241
+00:16:03.240 --> 00:16:06.120
+The separation on the right illustrated the
+problem
+
+242
+00:16:06.120 --> 00:16:07.140
+in higher dimensions.
+
+243
+00:16:07.980 --> 00:16:12.080
+The approximation error is no longer controlled
+at the fluctuation scale,
+
+244
+00:16:12.080 --> 00:16:16.120
+So we cannot conclude that the two have the same
+variance and the
+
+245
+00:16:16.120 --> 00:16:17.080
+limiting distribution.
+
+246
+00:16:17.900 --> 00:16:22.100
+We therefore need a different method, which is
+the subject of the second paper.
+
+247
+00:16:22.940 --> 00:16:26.900
+For dimensions 5 and higher, we turn to a
+perturbation method.
+
+248
+00:16:27.800 --> 00:16:30.880
+On the left, we remove the circled green
+factory.
+
+249
+00:16:31.620 --> 00:16:37.660
+On the right, we build the new purple factory at
+an independent, uniformly random location.
+
+250
+00:16:37.660 --> 00:16:41.200
+All other factory locations stay fixed.
+
+251
+00:16:42.260 --> 00:16:45.840
+Both pictures shows optimal assignments with
+equal worker shares,
+
+252
+00:16:46.420 --> 00:16:48.080
+although the region boundary changes.
+
+253
+00:16:48.680 --> 00:16:53.040
+We ask how much this replacement changes the
+optimal matching cost.
+
+254
+00:16:53.040 --> 00:16:55.980
+once we understand this change precisely enough.
+
+255
+00:16:56.560 --> 00:17:00.180
+We can understand the fluctuation using standard
+method in probability,
+
+256
+00:17:00.520 --> 00:17:02.760
+which we won&#x27;t explain in detail here.
+
+257
+00:17:03.240 --> 00:17:04.940
+To study this replacement,
+
+258
+00:17:04.940 --> 00:17:09.040
+replacement, we gradually shifted the required
+worker share from the
+
+259
+00:17:09.040 --> 00:17:11.340
+old green factory to the new purple one.
+
+260
+00:17:11.940 --> 00:17:16.100
+The colored region shows staffing, and the bar
+shows their shares
+
+261
+00:17:16.100 --> 00:17:17.780
+change as T move from
+
+262
+00:17:17.780 --> 00:17:22.920
+0 to 1, write WN0 for the initial optimal cost,
+and
+
+263
+00:17:22.920 --> 00:17:25.260
+the WN1 for the cost after replacement.
+
+264
+00:17:26.040 --> 00:17:30.960
+At time T, the share at the old factory
+decreased to 1 minus T over
+
+265
+00:17:30.960 --> 00:17:33.160
+N, while the share in new
+
+266
+00:17:33.160 --> 00:17:35.460
+factory increase to T over N.
+
+267
+00:17:36.280 --> 00:17:39.940
+Every other factory keeps its location and
+shares one over N.
+
+268
+00:17:40.460 --> 00:17:42.100
+But the region boundary adjusts.
+
+269
+00:17:42.960 --> 00:17:46.920
+We will optimize at every stage and call the
+cost W N T.
+
+270
+00:17:47.420 --> 00:17:52.540
+We want to study the change in optimal cost, W N
+1 minus W N 0.
+
+271
+00:17:53.200 --> 00:17:54.440
+Integrating the derivative
+
+272
+00:17:54.440 --> 00:17:58.100
+along this interpolation gives the identity on
+the screen.
+
+273
+00:17:58.580 --> 00:17:59.940
+We therefore need to understand
+
+274
+00:17:59.940 --> 00:18:02.160
+the derivative of Wn(t).
+
+275
+00:18:02.580 --> 00:18:05.700
+How does the optimal cost respond? When we
+increase
+
+276
+00:18:05.700 --> 00:18:11.920
+the new factories, require the worker share and
+decrease the old factories by the same amount.
+
+277
+00:18:12.660 --> 00:18:17.220
+To study this cost derivative, we return to
+wages using
+
+278
+00:18:17.220 --> 00:18:23.320
+Kantorovich duality. Let w be the wage vector
+and let m be the staffing
+
+279
+00:18:23.320 --> 00:18:23.740
+vector.
+
+280
+00:18:24.500 --> 00:18:29.720
+In both vector, the new factory comes first, the
+old factory second, followed
+
+281
+00:18:29.720 --> 00:18:31.740
+by the other n minus one factories.
+
+282
+00:18:32.920 --> 00:18:37.500
+The staffing share changes as shown, and the
+optimal wages adjust.
+
+283
+00:18:38.060 --> 00:18:41.400
+Kantorovich duality connects these two vectors
+to the
+
+284
+00:18:41.400 --> 00:18:42.480
+transportation cost.
+
+285
+00:18:43.220 --> 00:18:47.440
+It let us calculate how change in staffing
+affect the wages
+
+286
+00:18:47.440 --> 00:18:48.920
+and the optimal cost.
+
+287
+00:18:49.540 --> 00:18:53.760
+Recall that we want to understand how the
+optimal cost WN
+
+288
+00:18:53.760 --> 00:18:56.100
+changes as the staffing vector m changes.
+
+289
+00:18:56.840 --> 00:19:01.900
+Kantorovich duality lets us study this through
+the optimal wage vector w?
+
+290
+00:19:02.200 --> 00:19:06.700
+Staffing changes the wage, which determines the
+change in cost.
+
+291
+00:19:07.240 --> 00:19:10.460
+Since the staffing changes along the
+interpolation are known,
+
+292
+00:19:10.980 --> 00:19:17.480
+the derivative matrix we need to understand is h
+inverse, which is dw over dm.
+
+293
+00:19:17.480 --> 00:19:22.580
+We have a more direct understanding of what H
+equals
+
+294
+00:19:22.580 --> 00:19:27.260
+to Dm over Dw is. The staffing response to
+wages.
+
+295
+00:19:28.120 --> 00:19:29.620
+The next slide shows why.
+
+296
+00:19:30.500 --> 00:19:32.200
+Why is H easier to understand?
+
+297
+00:19:32.940 --> 00:19:35.620
+Change one wage and watch how staffing responds.
+
+298
+00:19:36.640 --> 00:19:40.560
+Keep every other wage fixed and increase the
+green factory&#x27;s wage.
+
+299
+00:19:41.620 --> 00:19:45.540
+Workers near its boundary now prefer it, so the
+region expands.
+
+300
+00:19:46.220 --> 00:19:51.120
+Since workers are uniformly distributed, the
+region&#x27;s area is exactly
+
+301
+00:19:51.120 --> 00:19:52.300
+the worker&#x27;s share.
+
+302
+00:19:52.920 --> 00:19:58.180
+Its own staffing increases, while factories
+sharing a boundary lose workers.
+
+303
+00:19:58.840 --> 00:20:03.600
+These responses form the corresponding column of
+H: a positive entry
+
+304
+00:20:03.600 --> 00:20:06.960
+on the green factory and negative entries for
+its neighbors.
+
+305
+00:20:07.860 --> 00:20:12.640
+This slide is for viewers familiar with matrices
+and Markov processes.
+
+306
+00:20:12.640 --> 00:20:17.960
+We want to understand H inverse, but have a
+direct information about H.
+
+307
+00:20:18.360 --> 00:20:21.220
+This integral representation connects the two.
+
+308
+00:20:21.920 --> 00:20:25.680
+We now think of negative H as the generator of a
+random walk.
+
+309
+00:20:26.380 --> 00:20:30.800
+For a fixed partition, the matrix e to the power
+of negative SH
+
+310
+00:20:30.800 --> 00:20:35.920
+describes a continuous-time random walk between
+neighboring factory region.
+
+311
+00:20:36.620 --> 00:20:40.960
+The region matters because the jump rate depends
+on the shared boundary size.
+
+312
+00:20:42.020 --> 00:20:46.500
+We can therefore study the inverse through the
+behavior of this walk.
+
+313
+00:20:47.120 --> 00:20:52.320
+To sum up, we have connected the effect of
+replacing one factory to
+
+314
+00:20:52.320 --> 00:20:55.260
+the behavior of random walk on the factory
+regions.
+
+315
+00:20:55.840 --> 00:21:00.180
+The connection passes through how the optimal
+wages respond when we
+
+316
+00:21:00.180 --> 00:21:01.720
+perturb the staffing requirement.
+
+317
+00:21:02.680 --> 00:21:06.640
+This lets us bring the tools from Markov-process
+theory to control
+
+318
+00:21:06.640 --> 00:21:11.900
+the change in optimal optimal cost and prove the
+fluctuation result for Wn in dimensions
+
+319
+00:21:11.900 --> 00:21:13.000
+5 and higher.
+
+320
+00:21:14.740 --> 00:21:18.680
+This video is meant to convey intuition, not
+rigorous proofs.
+
+321
+00:21:19.420 --> 00:21:20.820
+The explanation are deliberately
+
+322
+00:21:21.400 --> 00:21:26.100
+informal, and some statements are even incorrect
+without additional explanation.
+
+323
+00:21:26.980 --> 00:21:32.560
+For example, H is not invertible on the full
+space, so our notation H inverse
+
+324
+00:21:32.560 --> 00:21:34.580
+needs a precise interpretation
+
+325
+00:21:34.580 --> 00:21:38.980
+For a rigorous account of these ideas, I
+encourage you to read the
+
+326
+00:21:38.980 --> 00:21:41.320
+proof strategy section in the two papers.
+
+327
+00:21:42.060 --> 00:21:45.500
+If you would like to go deeper, the full proofs
+are in the papers.
+
