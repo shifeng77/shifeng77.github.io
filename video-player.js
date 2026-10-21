@@ -1,5 +1,15 @@
 // Keep the controls outside the slide so they never cover its captions.
-document.querySelectorAll('.publication-video').forEach(video => {
+const speakerIcon = muted => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="display:block">
+    <path d="M11 5 6 9H3v6h3l5 4Z"/>
+    ${muted ? '<path d="m16 9 6 6m0-6-6 6"/>' : '<path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>'}
+</svg>`;
+document.querySelectorAll('video').forEach(video => {
+    if (video.closest('.publication-player')) return;
+    video.classList.add('publication-video');
+    video.setAttribute('controlslist', 'nodownload');
+    video.setAttribute('disablepictureinpicture', '');
+    video.setAttribute('playsinline', '');
+    if (!video.hasAttribute('preload')) video.preload = 'metadata';
     const player = document.createElement('div');
     player.className = 'publication-player';
     const stage = document.createElement('div');
@@ -16,7 +26,7 @@ document.querySelectorAll('.publication-video').forEach(video => {
         <div class="video-toolbar">
             <button type="button" data-action="play" aria-label="Play">▶</button>
             <span class="video-time">0:00 / 0:00</span>
-            <button type="button" data-action="mute" aria-label="Mute">♪</button>
+            <button type="button" data-action="mute" aria-label="Mute">${speakerIcon(false)}</button>
             <input class="video-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
             <select aria-label="Playback speed">
                 <option value="0.75">0.75×</option><option value="1" selected>1×</option>
@@ -88,7 +98,7 @@ document.querySelectorAll('.publication-video').forEach(video => {
     ['play', 'pause', 'ended'].forEach(event => video.addEventListener(event, updatePlay));
     const updateVolume = () => {
         const muted = video.muted || video.volume === 0;
-        button('mute').textContent = muted ? '×♪' : '♪';
+        button('mute').innerHTML = speakerIcon(muted);
         button('mute').setAttribute('aria-label', muted ? 'Unmute' : 'Mute');
         volume.value = video.muted ? 0 : video.volume;
     };
