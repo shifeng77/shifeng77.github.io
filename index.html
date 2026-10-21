@@ -224,12 +224,18 @@
             font-weight: 600;
         }
 
+        .publication-video-label {
+            margin-top: 16px;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
         .publication-video {
             display: block;
             width: 100%;
             max-width: 420px;
             aspect-ratio: 16 / 9;
-            margin-top: 16px;
+            margin-top: 8px;
             border-radius: 10px;
             background: #0f172a;
         }
@@ -329,7 +335,8 @@
                 <div class="publication-links">
                     <a href="https://arxiv.org/abs/2610.14304" target="_blank">arXiv</a>
                 </div>
-                <video class="publication-video" controls playsinline preload="none" aria-label="Video explanation of optimal matching">
+                <p class="publication-video-label">Video explanation</p>
+                <video class="publication-video" controls playsinline preload="none" poster="videos/optimal-matching-poster.jpg" aria-label="Video explanation of optimal matching">
                     <source src="videos/optimal-matching.mp4" type="video/mp4">
                     <a href="videos/optimal-matching.mp4">Watch the optimal matching video</a>.
                 </video>
@@ -341,7 +348,8 @@
                 <div class="publication-links">
                     <a href="https://arxiv.org/abs/2609.26597" target="_blank">arXiv</a>
                 </div>
-                <video class="publication-video" controls playsinline preload="none" aria-label="Video explanation of optimal matching">
+                <p class="publication-video-label">Video explanation</p>
+                <video class="publication-video" controls playsinline preload="none" poster="videos/optimal-matching-poster.jpg" aria-label="Video explanation of optimal matching">
                     <source src="videos/optimal-matching.mp4" type="video/mp4">
                     <a href="videos/optimal-matching.mp4">Watch the optimal matching video</a>.
                 </video>
