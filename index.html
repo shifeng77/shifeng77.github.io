@@ -248,6 +248,14 @@
             object-fit: contain;
         }
 
+        .publication-video::cue {
+            font-size: 12px;
+        }
+
+        .publication-video:fullscreen::cue {
+            font-size: clamp(16px, 2vh, 28px);
+        }
+
         footer {
             text-align: center;
             padding: 28px 0 36px;
