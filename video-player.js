@@ -16,6 +16,10 @@ document.querySelectorAll('video').forEach(video => {
     stage.className = 'video-stage';
     const picture = document.createElement('div');
     picture.className = 'video-picture';
+    picture.tabIndex = 0;
+    picture.setAttribute('role', 'button');
+    picture.setAttribute('aria-keyshortcuts', 'Space Enter k ArrowLeft ArrowRight');
+    picture.title = 'Click to play or pause. Left/right arrows: 5 seconds. Swipe left/right: 10 seconds.';
     const captions = document.createElement('div');
     captions.className = 'video-captions';
     captions.hidden = true;
@@ -172,15 +176,58 @@ document.querySelectorAll('video').forEach(video => {
     };
     ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked'].forEach(event => video.addEventListener(event, updateTime));
     seek.addEventListener('input', () => { video.currentTime = Number(seek.value); updateTime(); });
-    button('play').addEventListener('click', async () => {
+    const togglePlayback = async () => {
         if (video.paused) {
             try { await video.play(); error.hidden = true; }
             catch { report('Video could not play. Please try again.'); }
         } else video.pause();
+    };
+    button('play').addEventListener('click', togglePlayback);
+    const seekBy = seconds => {
+        if (!Number.isFinite(video.duration)) return;
+        video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + seconds));
+        updateTime();
+    };
+    let gesture = null;
+    let suppressClick = false;
+    picture.addEventListener('pointerdown', event => {
+        if (!event.isPrimary || event.button !== 0) return;
+        gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+        suppressClick = false;
+        picture.setPointerCapture(event.pointerId);
+    });
+    picture.addEventListener('pointerup', event => {
+        if (!gesture || gesture.id !== event.pointerId) return;
+        const dx = event.clientX - gesture.x;
+        const dy = event.clientY - gesture.y;
+        gesture = null;
+        if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+            suppressClick = true;
+            picture.focus({ preventScroll: true });
+            seekBy(dx > 0 ? 10 : -10);
+        } else if (Math.hypot(dx, dy) >= 15) suppressClick = true;
+    });
+    picture.addEventListener('pointercancel', () => { gesture = null; suppressClick = true; });
+    picture.addEventListener('click', () => {
+        if (suppressClick) { suppressClick = false; return; }
+        picture.focus({ preventScroll: true });
+        togglePlayback();
+    });
+    player.addEventListener('keydown', event => {
+        // Leave volume, seeking, and speed widgets with their native keyboard behavior.
+        if (event.target.closest('input, select, textarea, [contenteditable="true"]')) return;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            seekBy(event.key === 'ArrowRight' ? 5 : -5);
+        } else if (event.target === picture && [' ', 'Enter', 'k', 'K'].includes(event.key)) {
+            event.preventDefault();
+            if (!event.repeat) togglePlayback();
+        }
     });
     const updatePlay = () => {
         button('play').textContent = video.paused ? '▶' : 'Ⅱ';
         button('play').setAttribute('aria-label', video.paused ? 'Play' : 'Pause');
+        picture.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
     };
     ['play', 'pause', 'ended'].forEach(event => video.addEventListener(event, updatePlay));
     const updateVolume = () => {

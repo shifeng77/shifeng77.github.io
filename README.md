@@ -4,6 +4,8 @@ The site is served by GitHub Pages from `main`. Its page is `index.html`.
 
 ## Adding a video
 
+Click or tap the video image to play/pause. With the player focused, use left/right arrow keys to seek 5 seconds; swipe or drag the image left/right to seek 10 seconds. Space, Enter, or K toggles playback when the image is focused. These interactions work in fullscreen too; sliders and the speed menu keep their normal keyboard behavior.
+
 Every `<video>` on a page that loads `video-player.js` automatically uses the shared player. No special video class is required. The default has a black control bar, individually visible controls, a CC toggle, and transparent captions placed in reviewed blank areas of each slide. When there is not enough room, captions use space below the image, above the separate controls, in both compact and fullscreen views.
 
 1. Put the video, a poster showing its first slide, and synchronized WebVTT captions in `videos/`.
