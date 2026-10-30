@@ -14,6 +14,8 @@ document.querySelectorAll('video').forEach(video => {
     player.className = 'publication-player';
     const stage = document.createElement('div');
     stage.className = 'video-stage';
+    const picture = document.createElement('div');
+    picture.className = 'video-picture';
     const captions = document.createElement('div');
     captions.className = 'video-captions';
     captions.hidden = true;
@@ -40,7 +42,8 @@ document.querySelectorAll('video').forEach(video => {
     error.setAttribute('role', 'status');
     error.hidden = true;
     video.before(player);
-    stage.append(video, captions);
+    picture.append(video);
+    stage.append(picture, captions);
     player.append(stage, controls, error);
     video.controls = false;
 
@@ -56,10 +59,94 @@ document.querySelectorAll('video').forEach(video => {
         return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
     };
     const report = message => { error.textContent = message; error.hidden = false; };
+    const sourceName = (video.querySelector('source')?.getAttribute('src') || video.getAttribute('src') || '').split('/').pop().split('?')[0];
+    const slideLayouts = window.videoCaptionLayouts?.[sourceName] || [];
+    let layoutFrame = 0;
+    let lastLayoutKey = '';
+    const positionCaptions = () => {
+        layoutFrame = 0;
+        if (captions.hidden && captionsEnabled) return;
+        if (!captionsEnabled) {
+            stage.classList.remove('has-caption-footer');
+            stage.style.removeProperty('--caption-reserve');
+            lastLayoutKey = '';
+            return;
+        }
+        const scene = slideLayouts.find(s => video.currentTime >= s.start && video.currentTime < s.end);
+        const inFullscreen = (document.fullscreenElement || document.webkitFullscreenElement) === player;
+        const key = [scene?.slide || 'unmapped', track?.cues?.length, player.clientWidth, window.innerHeight, inFullscreen].join('|');
+        if (key === lastLayoutKey) return;
+        lastLayoutKey = key;
+        stage.classList.remove('has-caption-footer');
+        stage.style.removeProperty('--caption-reserve');
+        captions.style.top = 'auto';
+        captions.style.bottom = 'auto';
+        // Measure every caption on this slide so its placement does not jump between sentences.
+        const slideTexts = Array.from(track?.cues || [])
+            .filter(cue => !scene || (cue.startTime < scene.end && cue.endTime > scene.start))
+            .map(cue => cue.text);
+        const measure = () => {
+            const currentText = captionText.textContent;
+            let height = 0;
+            let overflow = false;
+            for (const text of slideTexts.length ? slideTexts : [currentText]) {
+                captionText.textContent = text;
+                height = Math.max(height, captions.getBoundingClientRect().height);
+                overflow ||= captions.scrollWidth > captions.clientWidth + 1;
+            }
+            captionText.textContent = currentText;
+            return { height, overflow };
+        };
+        // Try the slide's reviewed blank areas at the user's chosen readable size.
+        const width = picture.clientWidth;
+        const height = picture.clientHeight;
+        for (const [left, top, boxWidth, boxHeight] of scene?.regions || []) {
+            captions.style.left = `${left}%`;
+            captions.style.width = `${boxWidth}%`;
+            const metrics = measure();
+            const textHeight = metrics.height;
+            const availableHeight = height * boxHeight / 100;
+            if (textHeight + 8 <= availableHeight && !metrics.overflow) {
+                captions.style.top = `${height * (top + boxHeight) / 100 - textHeight - 4}px`;
+                captions.dataset.placement = scene.slide;
+                return;
+            }
+        }
+        // Crowded slides and narrow players get a seamless footer, not an overlay.
+        // Measure at the actual fullscreen width and reserve enough vertical room.
+        let reserve = 0;
+        let footerWidth = width;
+        let textHeight = 0;
+        const controlsHeight = controls.getBoundingClientRect().height;
+        for (let i = 0; i < 8; i++) {
+            captions.style.left = '4%';
+            captions.style.width = `${footerWidth * 0.92}px`;
+            textHeight = measure().height;
+            const nextReserve = Math.ceil(textHeight + 20);
+            const nextWidth = inFullscreen
+                ? Math.max(1, Math.min(player.clientWidth, (window.innerHeight - controlsHeight - nextReserve - 16) * 16 / 9))
+                : width;
+            if (nextReserve === reserve && Math.abs(nextWidth - footerWidth) < 1) break;
+            reserve = nextReserve;
+            footerWidth = nextWidth;
+        }
+        stage.style.setProperty('--caption-reserve', `${reserve}px`);
+        stage.classList.add('has-caption-footer');
+        captions.style.width = '92%';
+        captions.style.top = 'auto';
+        captions.style.bottom = '10px';
+        captions.dataset.placement = 'footer';
+    };
+    const queueCaptionLayout = () => {
+        if (!layoutFrame) layoutFrame = requestAnimationFrame(positionCaptions);
+    };
+    new ResizeObserver(queueCaptionLayout).observe(player);
+    window.addEventListener('resize', queueCaptionLayout);
     const updateCaptions = () => {
         const text = track ? Array.from(track.activeCues || []).map(cue => cue.text).join(' ') : '';
         captionText.textContent = text;
         captions.hidden = !captionsEnabled || !text;
+        queueCaptionLayout();
     };
     if (track) {
         // Hidden tracks load and track cue timing without the native captions/settings menu.
@@ -123,7 +210,11 @@ document.querySelectorAll('video').forEach(video => {
             else report('Fullscreen is not available in this browser.');
         } catch { report('Fullscreen could not open. Please try again.'); }
     });
-    const updateFullscreen = () => button('fullscreen').setAttribute('aria-label', fullscreenElement() === player ? 'Exit fullscreen' : 'Enter fullscreen');
+    const updateFullscreen = () => {
+        button('fullscreen').setAttribute('aria-label', fullscreenElement() === player ? 'Exit fullscreen' : 'Enter fullscreen');
+        lastLayoutKey = '';
+        queueCaptionLayout();
+    };
     document.addEventListener('fullscreenchange', updateFullscreen);
     document.addEventListener('webkitfullscreenchange', updateFullscreen);
     updateTime();
