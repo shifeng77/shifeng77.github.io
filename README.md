@@ -6,7 +6,7 @@ The site is served by GitHub Pages from `main`. Its page is `index.html`.
 
 Every `<video>` on a page that loads `video-player.js` automatically uses the shared player. No special video class is required. The default has a black control bar, individually visible controls, a CC toggle, and captions at the bottom of the slide image, above the separate controls in both compact and fullscreen views.
 
-1. Put the video, a poster showing its first slide, and any WebVTT captions in `videos/`.
+1. Put the video, a poster showing its first slide, and synchronized WebVTT captions in `videos/`.
 2. Add the following markup to the appropriate paper block in `index.html`, replacing the filenames and description:
 
 ```html
@@ -21,7 +21,7 @@ Every `<video>` on a page that loads `video-player.js` automatically uses the sh
 </video>
 ```
 
-Omit the `<track>` if captions are not available. Prepare captions as complete sentences or natural clauses, rather than many short fragments. The shared player controls their visual placement; WebVTT cue times determine synchronization.
+For every narrated video, include captions. If no synchronized caption file is supplied, transcribe the final video and create one; do not omit captions just because they were not provided. Check names and mathematical terms against the narration script or paper when available, and label automatically transcribed tracks `English (auto-generated)`. Omit the `<track>` only for videos with no speech. Prepare captions as complete sentences or natural clauses, rather than many short fragments. The shared player controls their visual placement; WebVTT cue times determine synchronization.
 
 `index.html` already loads `video-player.css` and `video-player.js`. Include both on any new HTML page containing videos. The script initializes videos present when the page loads and automatically applies the shared styling, inline playback, and download/PiP control restrictions. Native `controls` provide a fallback when JavaScript is unavailable.
 

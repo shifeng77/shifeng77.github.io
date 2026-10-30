@@ -1,0 +1,845 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.410
+Hi, I'm Shi Feng.
+
+2
+00:00:01.860 --> 00:00:05.650
+In this video, we will talk about minimum perfect matching problem.
+
+3
+00:00:06.720 --> 00:00:11.590
+In particular, I want to share the main result and the ideas from this paper.
+
+4
+00:00:11.980 --> 00:00:15.710
+It studies the variance of the minimum perfect matching cost.
+
+5
+00:00:16.240 --> 00:00:19.670
+I will explain the result and the intuition behind its proof.
+
+6
+00:00:20.420 --> 00:00:29.780
+The later intuition assumes some familiarity with standard probability tools, including the Efron–Stein inequality and the law of total variance.
+
+7
+00:00:29.780 --> 00:00:36.470
+Familiarity with the Poincaré inequality is helpful but not required to understand the intuition.
+
+8
+00:00:37.080 --> 00:00:38.370
+Here is the setup.
+
+9
+00:00:38.880 --> 00:00:46.670
+Consider an even number n of points, sampled independently and uniformly in a unit square with side length one.
+
+10
+00:00:46.980 --> 00:00:55.010
+Our goal is to pair the points so that every point has exactly one partner and the total pairing distance is minimized.
+
+11
+00:00:55.960 --> 00:01:01.110
+This means n/2 disjoint pairs with nobody left out or used twice.
+
+12
+00:01:01.740 --> 00:01:10.310
+The left picture is a valid pairing, though not optimal. 100 points form 50 pairs. The right picture is not valid.
+
+13
+00:01:10.840 --> 00:01:14.450
+The red points have no partner because their connection is missing.
+
+14
+00:01:14.900 --> 00:01:19.310
+The orange points each have two partners because an extra connection was added.
+
+15
+00:01:19.960 --> 00:01:21.630
+Either problem breaks the rule.
+
+16
+00:01:22.180 --> 00:01:24.050
+Let's define the problem clearly.
+
+17
+00:01:24.620 --> 00:01:27.470
+Let X_1 to X_n be the random points.
+
+18
+00:01:27.960 --> 00:01:30.870
+We write H_n for the minimum total pairing cost.
+
+19
+00:01:31.420 --> 00:01:36.710
+In the formula, m represents a valid pairing of the indices 1 to n.
+
+20
+00:01:37.220 --> 00:01:40.710
+It groups them into disjoint unordered pairs.
+
+21
+00:01:41.160 --> 00:01:48.810
+Here, d(X_i, X_j) is the distance between the two points using ordinary Euclidean distance in our square.
+
+22
+00:01:49.380 --> 00:01:51.430
+The sum counts each pair once.
+
+23
+00:01:51.920 --> 00:01:54.410
+The minimum chooses the best way of pairing.
+
+24
+00:01:54.900 --> 00:01:57.870
+Here, n is the total number of points.
+
+25
+00:01:58.180 --> 00:02:01.330
+The picture shows the optimal pairing for these locations.
+
+26
+00:02:01.780 --> 00:02:07.910
+For the 100 points shown here, the minimum total pairing cost is about 3.364.
+
+27
+00:02:08.600 --> 00:02:11.890
+The same questions can also be asked in higher dimensions.
+
+28
+00:02:12.700 --> 00:02:15.210
+The square becomes the cube in three dimensions.
+
+29
+00:02:15.760 --> 00:02:20.930
+More generally, we use the d-dimensional unit cube, written [0,1]^d.
+
+30
+00:02:21.360 --> 00:02:24.190
+Every coordinate lies between 0 and 1.
+
+31
+00:02:24.680 --> 00:02:29.440
+We again sample an even number n of points, independently and uniformly.
+
+32
+00:02:29.440 --> 00:02:31.790
+The goal is unchanged.
+
+33
+00:02:32.520 --> 00:02:37.230
+Divide the points into pairs and minimize the sum of Euclidean distance.
+
+34
+00:02:37.940 --> 00:02:40.090
+We still call the minimum H_n.
+
+35
+00:02:40.360 --> 00:02:43.870
+We will consider dimensions d larger or equal to 2.
+
+36
+00:02:44.200 --> 00:02:46.170
+Higher dimensions are hard to visualize.
+
+37
+00:02:46.940 --> 00:02:54.070
+So from here on, we will use two-dimensional pictures while keeping d in the formulas for the general dimensions.
+
+38
+00:02:54.900 --> 00:03:00.850
+Because the point locations are random, the minimum matching cost H_n is also random.
+
+39
+00:03:01.420 --> 00:03:06.030
+Now, let the number of points become large. We ask three questions.
+
+40
+00:03:07.020 --> 00:03:11.690
+How does the expectation or average cost depend on the number of points?
+
+41
+00:03:12.260 --> 00:03:16.340
+How large is the spread around the average measured by the variance?
+
+42
+00:03:16.340 --> 00:03:23.130
+And after subtracting the average and rescaling the fluctuations, is there a limiting distribution?
+
+43
+00:03:24.000 --> 00:03:26.190
+Let's first look at the expectation.
+
+44
+00:03:27.140 --> 00:03:31.550
+Choose one point and ask: how far away is the nearest other point?
+
+45
+00:03:32.100 --> 00:03:38.690
+In a fixed dimension d, a ball of radius r has volume of order r to the power of d.
+
+46
+00:03:38.940 --> 00:03:48.230
+Among n uniform points, we expect about n r to the power of d others in that neighborhood, up to dimension-dependent constant.
+
+47
+00:03:49.160 --> 00:03:56.310
+The first neighbor appears when this count is of order 1, suggesting distance n to the power of negative 1 over d.
+
+48
+00:03:56.620 --> 00:03:58.570
+There are n over 2 pairs.
+
+49
+00:03:59.340 --> 00:04:06.940
+Multiplying by this nearest-neighbor scale suggests total cost of order n to the power of 1 minus 1 over d.
+
+50
+00:04:06.940 --> 00:04:10.890
+This is a scale heuristic, not a matching algorithm.
+
+51
+00:04:11.560 --> 00:04:15.740
+Choosing everyone's nearest neighbor need not give a valid pairing.
+
+52
+00:04:15.740 --> 00:04:18.530
+Classical results confirm the exponent.
+
+53
+00:04:19.220 --> 00:04:27.210
+The expectation is asymptotic to beta d times n to the power of 1 minus 1 over d, for some positive constant beta d.
+
+54
+00:04:27.760 --> 00:04:29.010
+Next, the variance.
+
+55
+00:04:29.520 --> 00:04:33.850
+In dimension 2, Rhee's upper bound grows like log n squared.
+
+56
+00:04:34.280 --> 00:04:41.030
+In higher dimension, Talagrand obtained n to the power of 1 minus 2 over d with an extra log factor.
+
+57
+00:04:42.560 --> 00:04:45.090
+Our paper removes those losses.
+
+58
+00:04:45.840 --> 00:04:53.500
+The variance is at most C d n to the power of 1 minus 2 over d, with C independent of n and d.
+
+59
+00:04:53.500 --> 00:05:01.550
+In the square, substituting d equal to 2 into the formula gives a variance bounded by a constant C.
+
+60
+00:05:01.860 --> 00:05:09.066
+The predicted lower bound is c_d n to the power of 1 minus 2 over d with some c_d larger than 0,
+
+61
+00:05:09.066 --> 00:05:12.410
+matching the upper bound order for each fixed dimension.
+
+62
+00:05:13.000 --> 00:05:16.500
+There is an interesting story behind the lower bound.
+
+63
+00:05:16.500 --> 00:05:23.750
+In Talagrand's paper, he suggested the lower bound as an exercise, explicitly noting that it was unchecked.
+
+64
+00:05:24.400 --> 00:05:31.470
+Later, Chatterjee listed a tight lower bound for matching fluctuations with uniform points as an open problem.
+
+65
+00:05:32.060 --> 00:05:35.350
+In this project, we focus only on the upper bound.
+
+66
+00:05:35.820 --> 00:05:38.210
+What about the shape of limiting distribution?
+
+67
+00:05:38.860 --> 00:05:41.900
+The limiting distribution remains open for this model.
+
+68
+00:05:41.900 --> 00:05:46.630
+My guess is a standard Gaussian limit shown here as a conjecture.
+
+69
+00:05:47.220 --> 00:05:50.210
+The simulation on the right also supports this guess.
+
+70
+00:05:50.660 --> 00:05:54.390
+The standardized matching costs look close to a Gaussian distribution.
+
+71
+00:05:55.220 --> 00:06:03.310
+I won't explain the reason behind this guess here, because it would involve several abstract ideas and predictions that have not been validated.
+
+72
+00:06:03.860 --> 00:06:06.690
+If you are interested in exploring this further,
+
+73
+00:06:07.260 --> 00:06:14.250
+I encourage you to read my paper on quadratic matching on the flat torus in dimension d larger than 5.
+
+74
+00:06:14.620 --> 00:06:21.210
+It explains the property and estimates needed to prove the central limit theorem in a related model.
+
+75
+00:06:21.900 --> 00:06:25.140
+For the rest of the video, we will focus on the variance.
+
+76
+00:06:25.140 --> 00:06:29.830
+For simplicity, fix dimension d and study dependence on n.
+
+77
+00:06:30.120 --> 00:06:37.230
+Our goal is an upper bound C_d times n to the power of 1 minus 2 over d, where C_d may depend on d.
+
+78
+00:06:37.720 --> 00:06:40.030
+First, try the Efron–Stein inequality.
+
+79
+00:06:40.620 --> 00:06:48.110
+Replace xi by an independent uniform point xi prime, as shown in the picture, leaving the other points fixed.
+
+80
+00:06:48.720 --> 00:06:50.910
+Call the new minimum H_n^i.
+
+81
+00:06:51.180 --> 00:06:59.702
+The Efron–Stein inequality tells us that the variance is bounded by one half of the sum of the expected squared change in the minimum cost,
+
+82
+00:06:59.702 --> 00:07:02.530
+over all n possible point replacements.
+
+83
+00:07:03.340 --> 00:07:05.970
+Keep the old partner and every other pair.
+
+84
+00:07:06.360 --> 00:07:13.100
+The triangle inequality bounds the new edge by the old edge plus the displacement from xi to xi prime.
+
+85
+00:07:13.100 --> 00:07:17.650
+The new optimum is no more expensive than this pairing cost.
+
+86
+00:07:18.080 --> 00:07:21.510
+Starting from the new optimum gives the reversed bound.
+
+87
+00:07:21.960 --> 00:07:27.850
+Therefore, the absolute cost change is at most d(X_i, X_i′).
+
+88
+00:07:27.920 --> 00:07:35.650
+This gives us a bound of C_d n, which is larger than the target bound C_d n to the power of 1 minus 2 over d.
+
+89
+00:07:36.000 --> 00:07:38.430
+Now, let me explain our method.
+
+90
+00:07:39.000 --> 00:07:46.830
+We begin by partitioning the unit cube into equal cubical cells, choosing the number of cells to be of order n.
+
+91
+00:07:47.180 --> 00:07:52.250
+The total volume is 1, so each cell has volume of order 1 over n.
+
+92
+00:07:52.540 --> 00:07:58.710
+Taking the d-th root, its side length ℓ is of order n to the power of negative 1 over d.
+
+93
+00:07:58.880 --> 00:08:04.060
+Our goal is to show that the variance of H_n is at most C_d nℓ².
+
+94
+00:08:04.060 --> 00:08:10.830
+For visualization, we use a 3 by 3 partitioning of the square with the same 100 points.
+
+95
+00:08:11.080 --> 00:08:16.350
+Label the cells from left to right, row by row starting from the upper left side.
+
+96
+00:08:17.900 --> 00:08:21.230
+Now we count the number of points in each cell.
+
+97
+00:08:21.620 --> 00:08:30.150
+For example, the first cell c1 has 16 points, so k1 equals to 16. Every row gives one count.
+
+98
+00:08:30.580 --> 00:08:32.690
+Put the nine counts back to the cell.
+
+99
+00:08:33.060 --> 00:08:39.210
+Together, they form k, read from left to right, row by row, starting from the upper left.
+
+100
+00:08:39.720 --> 00:08:45.890
+Each kj counts the number of points in the cell cj. Write q for the number of cells.
+
+101
+00:08:46.560 --> 00:08:48.270
+Here, q equals to 9.
+
+102
+00:08:49.040 --> 00:08:53.564
+Every entry is a nonnegative integer, and the entries sum to n.
+
+103
+00:08:53.564 --> 00:09:02.490
+Because the points are sampled independently, and each cell have probability 1 over q, K has the multinomial law shown below.
+
+104
+00:09:03.360 --> 00:09:10.130
+Now, condition on a particular count vector K equals k. How can we generate the points?
+
+105
+00:09:10.900 --> 00:09:14.730
+Start with empty cells, and keep the prescribed count fixed.
+
+106
+00:09:15.580 --> 00:09:20.460
+In the first cell, sample k1 positions independently and uniformly.
+
+107
+00:09:20.460 --> 00:09:30.150
+Then do the same in second cells, with k2 points, and continue through the cells row by row. Watch the cells fill one by one.
+
+108
+00:09:30.600 --> 00:09:36.070
+Keep the points already sampled, and sample the next cell independently of all others.
+
+109
+00:09:36.720 --> 00:09:40.010
+In our example, the nine counts add up to 100.
+
+110
+00:09:40.740 --> 00:09:43.630
+So the completed picture has 100 points.
+
+111
+00:09:44.120 --> 00:09:48.410
+This generates the conditional points configuration with the given counts.
+
+112
+00:09:48.980 --> 00:09:57.110
+Now apply the Efron–Stein inequality to the independent within cell samples, with the count vector k fixed.
+
+113
+00:09:57.800 --> 00:10:01.610
+Resample xi inside its cell to obtain xi prime.
+
+114
+00:10:02.180 --> 00:10:05.110
+Watch the partner move inside and outside the cell.
+
+115
+00:10:05.580 --> 00:10:09.890
+Wherever it lies, the triangle inequality gives the same comparison.
+
+116
+00:10:10.840 --> 00:10:13.423
+Keep that partner and every other pair.
+
+117
+00:10:13.423 --> 00:10:20.450
+The new pairing cost is at most the old pairing cost plus the distance between xi and xi prime.
+
+118
+00:10:21.180 --> 00:10:25.110
+The new optimum is no more expensive than this comparison pairing.
+
+119
+00:10:25.740 --> 00:10:28.870
+Starting from the new optimum gives the reverse bound.
+
+120
+00:10:29.540 --> 00:10:37.730
+For optimal total pairing cost, the absolute difference between the old and the new pairing is at most the displacement,
+
+121
+00:10:38.360 --> 00:10:41.800
+bounded by the cell diameter square root of d times ℓ.
+
+122
+00:10:41.800 --> 00:10:48.050
+Efron–Stein sums the conditional expected squared distances over all n resamplings.
+
+123
+00:10:49.160 --> 00:10:55.410
+Each squared change is at most dℓ², so the variance is bounded by the target scale.
+
+124
+00:10:56.000 --> 00:11:02.430
+The conditional variance bound suggests using the law of total variance. It separates two effects.
+
+125
+00:11:02.940 --> 00:11:08.680
+The variance of the conditional mean comes first, and the expected conditional variance second.
+
+126
+00:11:08.680 --> 00:11:16.830
+We bounded the second term by C_d nℓ² in the previous argument, so it remains to bound the first.
+
+127
+00:11:17.280 --> 00:11:22.030
+The first term can be viewed as a variance of a function on the count state space.
+
+128
+00:11:22.660 --> 00:11:28.270
+The count states are nonnegative integer vectors with Q entries, summing to n.
+
+129
+00:11:29.120 --> 00:11:34.030
+Their law π is multinomial with cell probabilities 1 over Q.
+
+130
+00:11:34.880 --> 00:11:40.090
+Define f(k) to be the expected pairing cost given the count vector to be K.
+
+131
+00:11:40.620 --> 00:11:44.610
+The first term is variance of F under the multinomial law.
+
+132
+00:11:45.180 --> 00:11:50.970
+We seek a variance bound of C_d nℓ² for this function on the multinomial count space.
+
+133
+00:11:51.600 --> 00:11:56.610
+A standard way to bound the variance of a function is through the Poincaré inequality.
+
+134
+00:11:57.580 --> 00:12:02.980
+In this approach, the inequality is associated with the choice of dynamics.
+
+135
+00:12:02.980 --> 00:12:09.650
+For example, Langevin dynamics in Euclidean space or Glauber dynamics on the Boolean cube.
+
+136
+00:12:10.100 --> 00:12:16.410
+Here, a random walk on the count state space can be visualized by moving points between the cells.
+
+137
+00:12:17.860 --> 00:12:22.210
+Our strategy is the chain of two inequalities on the slide.
+
+138
+00:12:22.660 --> 00:12:25.330
+The middle quantity is called the Dirichlet energy.
+
+139
+00:12:26.040 --> 00:12:34.230
+The takeaway is that the Poincaré inequality turns our variance-bound problem into finding a suitable random walk on the count states.
+
+140
+00:12:34.900 --> 00:12:41.610
+Its stationary distribution should be the multinomial law, and it should satisfy the two inequalities shown here.
+
+141
+00:12:43.100 --> 00:12:46.830
+What do the two inequalities require of our random walk?
+
+142
+00:12:47.140 --> 00:12:55.280
+For the first, we want to allow as many transitions as possible, so the walk can spread efficiently through the count space.
+
+143
+00:12:55.280 --> 00:13:00.930
+For the second, we want each allowed transition to change f only a little.
+
+144
+00:13:01.360 --> 00:13:06.510
+Here, f(k) is the average pairing cost with the counts fixed to be k.
+
+145
+00:13:06.820 --> 00:13:09.250
+The picture shows one candidate move.
+
+146
+00:13:09.680 --> 00:13:12.570
+Transfer a point from the first cell to the second.
+
+147
+00:13:13.140 --> 00:13:19.770
+This subtracts one from the first coordinate of k and adds one in the second coordinate of k.
+
+148
+00:13:20.320 --> 00:13:26.270
+If f(k) and f(k′) are close, we allow this transition for this random walk.
+
+149
+00:13:26.760 --> 00:13:37.070
+Our goal is to find as many transitions from k to k prime as possible, for which the absolute difference between f(k) and f(k′) is at most C_d ℓ.
+
+150
+00:13:37.440 --> 00:13:39.810
+Let's explore which transitions work.
+
+151
+00:13:40.420 --> 00:13:45.920
+The first transition is to move one point from cell ci to a neighboring cell cj.
+
+152
+00:13:45.920 --> 00:13:56.290
+This subtracts one from the ith coordinate of k and adds one to its jth coordinate, giving k prime equals to k minus ei plus ej.
+
+153
+00:13:56.660 --> 00:14:04.630
+With the count fixed, choose a point x in ci and redraw it in cj, written as x prime.
+
+154
+00:14:05.320 --> 00:14:08.890
+The original partner z of x can lie anywhere.
+
+155
+00:14:09.680 --> 00:14:13.880
+Start from an optimal pairing and keep that partner and all other pairs.
+
+156
+00:14:13.880 --> 00:14:18.810
+As the point moves from x to x prime, only this edge changes.
+
+157
+00:14:19.240 --> 00:14:25.750
+The triangle inequality bounds the new edge by the old edge plus the displacement between x and x prime.
+
+158
+00:14:26.480 --> 00:14:30.370
+The new optimum costs no more than this comparison pairing.
+
+159
+00:14:30.820 --> 00:14:33.710
+Start from the new optimum gives the reverse bound.
+
+160
+00:14:34.080 --> 00:14:37.980
+So the absolute change in optimal cost is at most the displacement.
+
+161
+00:14:37.980 --> 00:14:44.050
+This displacement is at most C_d ℓ, regardless where the partner lies.
+
+162
+00:14:45.060 --> 00:14:55.870
+Finally, averaging over all coupled configuration gives the difference between f(k′) and f(k) less than C_d ℓ, which is small at target scale.
+
+163
+00:14:56.660 --> 00:15:03.330
+We can therefore allow the random walk to transfer one count between any two neighboring cells that share a side.
+
+164
+00:15:03.760 --> 00:15:06.090
+Watch the point move one at a time.
+
+165
+00:15:06.860 --> 00:15:14.510
+Whenever a point arrives in a neighboring cell, the source count decreased by one and the destination count increased by one.
+
+166
+00:15:14.940 --> 00:15:16.930
+All the other counts stay unchanged.
+
+167
+00:15:17.720 --> 00:15:20.110
+The walk then continues from this new configuration.
+
+168
+00:15:21.080 --> 00:15:23.930
+The total number of points remain 100 throughout.
+
+169
+00:15:24.600 --> 00:15:30.570
+The preceding triangle argument bounds the change in expected pairing cost by C_d ℓ.
+
+170
+00:15:31.080 --> 00:15:34.940
+This neighboring move gives us a useful local transition for the walk.
+
+171
+00:15:34.940 --> 00:15:39.790
+The second type of transition is less obvious. It is the pair move.
+
+172
+00:15:40.240 --> 00:15:43.870
+Consider two cells, no matter how far apart they are.
+
+173
+00:15:44.120 --> 00:15:51.410
+Choose two points in the source cell ci and redraw them independently and uniformly in another cell cj.
+
+174
+00:15:51.680 --> 00:15:56.170
+The source count decreased by two and the destination count increased by two.
+
+175
+00:15:57.240 --> 00:16:01.330
+First, suppose these points are paired together in the original optimum.
+
+176
+00:16:02.080 --> 00:16:07.290
+Move them together and keep them paired, leaving every other pair unchanged.
+
+177
+00:16:08.100 --> 00:16:10.310
+The long travel is not a matching edge.
+
+178
+00:16:10.660 --> 00:16:13.230
+We simply replaced one short edge by another.
+
+179
+00:16:13.920 --> 00:16:20.410
+The absolute change in this comparison cost is the absolute difference between the old and the new edge distance,
+
+180
+00:16:20.800 --> 00:16:24.270
+bounded by their sum and hence by C_d ℓ.
+
+181
+00:16:24.680 --> 00:16:27.540
+The new optimum costs no more than this comparison.
+
+182
+00:16:27.540 --> 00:16:31.210
+So this controls its possible increase in this case.
+
+183
+00:16:31.600 --> 00:16:36.190
+Now suppose the two selected points have different partners, A and B.
+
+184
+00:16:36.600 --> 00:16:40.790
+Redraw the points independently and uniformly in the distant cell.
+
+185
+00:16:41.120 --> 00:16:48.050
+For the new pairing, you connect the old partners and pair the two new points. All other pairs stay unchanged.
+
+186
+00:16:48.860 --> 00:16:51.130
+Watch the path through the two old points.
+
+187
+00:16:51.600 --> 00:17:01.970
+By the triangle inequality on the left image, the new edge costs at most the two old edge plus the distance between the two points x1 and x2.
+
+188
+00:17:02.380 --> 00:17:11.310
+The possible increase in the optimal cost is therefore at most the distance between x1 and x2 plus the distance between y1 and y2.
+
+189
+00:17:12.320 --> 00:17:14.710
+Which is at most C_d ℓ.
+
+190
+00:17:15.140 --> 00:17:17.410
+Both pairing cases are now covered.
+
+191
+00:17:17.880 --> 00:17:23.420
+Start from the new optimum and apply whichever case fits to bound the opposite change.
+
+192
+00:17:23.420 --> 00:17:28.290
+This gives the same bound on the absolute difference of the optimal cost.
+
+193
+00:17:28.900 --> 00:17:37.070
+Finally, averaging over coupled configurations gives the target bound on the difference between f(k′) and f(k).
+
+194
+00:17:37.380 --> 00:17:39.970
+The distance between the cells never enters.
+
+195
+00:17:40.840 --> 00:17:53.240
+Therefore, we can allow the random walk to move two points together from one cell to another cell.
+
+196
+00:17:53.240 --> 00:18:00.290
+The source count decreased by two, and the destination count increased by two. Every other count stays unchanged.
+
+197
+00:18:00.960 --> 00:18:03.770
+The source and the target cells can be neighboring or far apart.
+
+198
+00:18:04.180 --> 00:18:09.690
+The previous argument shows that this transition changes f by at most the cell size.
+
+199
+00:18:09.980 --> 00:18:13.550
+It does not depend on how far apart the two cells are.
+
+200
+00:18:13.900 --> 00:18:18.720
+Such transitions are allowed whenever the source cell contains at least two points.
+
+201
+00:18:18.720 --> 00:18:23.350
+Now, combine the two types of transition into the random walk.
+
+202
+00:18:23.620 --> 00:18:29.210
+One point can move to a neighboring cell, and two points can move together to any other cell.
+
+203
+00:18:29.500 --> 00:18:37.770
+With the partition described here, the paper shows the random walk shown in the image mixes fast enough to give the Poincaré inequality,
+
+204
+00:18:38.440 --> 00:18:42.590
+with the constant independent of n, which gives the first inequality.
+
+205
+00:18:43.480 --> 00:18:49.690
+The small change in f at each allowed transition gives the second inequality, which finishes the proof.
+
+206
+00:18:50.440 --> 00:18:53.690
+This video is meant to convey intuition and heuristics.
+
+207
+00:18:54.560 --> 00:18:58.510
+Many objects and steps have only been described informally.
+
+208
+00:18:58.820 --> 00:19:04.130
+And we have skipped many details, so some connections may still feel abstract.
+
+209
+00:19:04.840 --> 00:19:12.090
+For example, what are the transition rates of random walk, and why is the multinomial distribution its stationary distribution?
+
+210
+00:19:12.740 --> 00:19:18.410
+For more detailed intuition, I encourage you to read proof strategy section in the paper.
+
+211
+00:19:19.060 --> 00:19:26.710
+For the full argument, especially how the combined walk gives the Poincaré inequality, please see the detailed proofs in the paper.
